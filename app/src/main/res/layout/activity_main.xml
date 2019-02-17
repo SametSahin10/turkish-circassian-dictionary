@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tur_cirdictionary.turkish_circassiandictionary.MainActivity">
+
+    <SearchView
+        android:id="@+id/sw_searchForWord"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_margin="15dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_hint"
+        android:background="#368155" />
+
+    <Button
+        android:id="@+id/btn_seeArchive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#FFB549"
+        android:padding="20dp"
+        android:text="See Archive"
+        android:textAllCaps="false"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_insertAWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/btn_seeArchive"
+        android:background="#FFB546"
+        android:padding="20dp"
+        android:text="Insert a word"
+        android:textAllCaps="false"
+        android:textSize="30sp" />
+
+</android.widget.RelativeLayout>
