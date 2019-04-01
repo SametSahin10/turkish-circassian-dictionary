@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Turkish-Circassian Dictionary</string>
     <string name="search_hint">Search a Word</string>
+    <string name="title_activity_word_detail">WordDetailActivity</string>
 </resources>

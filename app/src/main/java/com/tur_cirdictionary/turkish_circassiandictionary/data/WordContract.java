@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
 public final class WordContract {
 
     public static final String CONTENT_AUTHORITY =
-            "com.tur_cirdictionary.turkishcircassiandictionary";
+            "com.tur_cirdictionary.turkish_circassiandictionary";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 

@@ -10,32 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_margin="15dp"
+        android:background="#368155"
         android:iconifiedByDefault="false"
-        android:queryHint="@string/search_hint"
-        android:background="#368155" />
+        android:queryHint="@string/search_hint"/>
 
     <Button
-        android:id="@+id/btn_seeArchive"
+        android:id="@+id/btn_clearSearchHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="#FFB549"
-        android:padding="20dp"
-        android:text="See Archive"
-        android:textAllCaps="false"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/btn_insertAWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_dropDatabase"
         android:layout_margin="10dp"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/btn_seeArchive"
-        android:background="#FFB546"
         android:padding="20dp"
-        android:text="Insert a word"
+        android:background="#FFB546"
+        android:text="Clear Search History"
         android:textAllCaps="false"
-        android:textSize="30sp" />
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btn_dropDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:background="#FFB546"
+        android:text="Drop Database"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
+
+
 
 </android.widget.RelativeLayout>

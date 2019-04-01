@@ -82,6 +82,8 @@ public class WordProvider extends ContentProvider {
 
         }
 
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
         return cursor;
     }
 
@@ -128,6 +130,8 @@ public class WordProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, @Nullable String selection,
                       @Nullable String[] selectionArgs) {
 
+        int numOfRowsDeleted;
+
         int match = sUriMatcher.match(uri);
 
         SQLiteDatabase database = wordDbHelper.getWritableDatabase();
@@ -135,7 +139,8 @@ public class WordProvider extends ContentProvider {
         switch (match) {
 
             case WORDS:
-                return database.delete(WordEntry.TABLE_NAME, selection, selectionArgs);
+                numOfRowsDeleted = database.delete(WordEntry.TABLE_NAME, selection, selectionArgs);
+                break;
 
             case WORD_ID:
                 long wordId = ContentUris.parseId(uri);
@@ -143,12 +148,22 @@ public class WordProvider extends ContentProvider {
                 selection = WordEntry._ID + "=?";
                 selectionArgs = new String[] {String.valueOf(wordId)};
 
-                return database.delete(WordEntry.TABLE_NAME, selection, selectionArgs);
+                numOfRowsDeleted =
+                        database.delete(WordEntry.TABLE_NAME, selection, selectionArgs);
+                break;
 
             default:
                 throw new IllegalArgumentException("Delete is not supported for " + uri);
 
         }
+
+        if (numOfRowsDeleted != 0) {
+
+            getContext().getContentResolver().notifyChange(uri, null);
+
+        }
+
+        return numOfRowsDeleted;
 
     }
 
@@ -181,7 +196,7 @@ public class WordProvider extends ContentProvider {
 
         if (values.containsKey(WordEntry.COLUMN_NAME_CIRCASSIAN)) {
 
-            String circassian = values.getAsString(WordEntry.COLUMN_NAME_TURKISH);
+            String circassian = values.getAsString(WordEntry.COLUMN_NAME_CIRCASSIAN);
 
             if (circassian == null) {
 
@@ -203,7 +218,7 @@ public class WordProvider extends ContentProvider {
 
         }
 
-        if (values.size() > 0) {
+        if (values.size() < 0) {
 
             return null;
 
@@ -215,13 +230,13 @@ public class WordProvider extends ContentProvider {
 
         if (idOfNewlyInserted == -1) {
 
-            Log.e(LOG_TAG, "Failed to insert row for: " + uri);
-
             return null;
 
         }
 
-        return ContentUris.withAppendedId(BASE_CONTENT_URI, idOfNewlyInserted);
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        return ContentUris.withAppendedId(WordEntry.CONTENT_URI, idOfNewlyInserted);
 
     }
 
@@ -260,7 +275,16 @@ public class WordProvider extends ContentProvider {
 
         SQLiteDatabase database = wordDbHelper.getWritableDatabase();
 
-        return database.update(WordEntry.TABLE_NAME, values, selection, selectionArgs);
+        int numOfRowsUpdated =
+                database.update(WordEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        if (numOfRowsUpdated != 0) {
+
+            getContext().getContentResolver().notifyChange(uri, null);
+
+        }
+
+        return numOfRowsUpdated;
 
     }
 

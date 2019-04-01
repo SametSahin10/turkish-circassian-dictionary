@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iw_emptyViewImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher_round"/>
+
+    <TextView
+        android:id="@+id/tv_emptyViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/iw_emptyViewImage"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="We are unable to find the word you searched" />
+
+</android.widget.RelativeLayout>
