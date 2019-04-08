@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.io.IOException;
+
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.BASE_CONTENT_URI;
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
@@ -43,15 +45,18 @@ public class WordProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection,
                         @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-
-        SQLiteDatabase database = wordDbHelper.getReadableDatabase();
-
+        try {
+            wordDbHelper.createDatabase();
+        } catch (IOException e) {
+            Log.e("TAG", "IOException occured");
+        }
+        SQLiteDatabase database = wordDbHelper.openDatabase();
+        if (database == null) {
+            Log.v("TAG", "Database is null");
+        }
         Cursor cursor;
-
         int match = sUriMatcher.match(uri);
-
         switch (match) {
-
             case WORDS:
                 cursor = database.query(WordEntry.TABLE_NAME,
                         projection,

@@ -26,7 +26,7 @@ import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContra
 public class MainActivity extends AppCompatActivity {
 
     SearchView sw_searchForWord;
-    Button btn_dropDatabase;
+    Button btn_seeArchive;
     Button btn_clearSearchHistory;
     SearchableInfo searchableInfo;
     WordCursorAdapter wordCursorAdapter;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sw_searchForWord = findViewById(R.id.sw_searchForWord);
-        btn_dropDatabase = findViewById(R.id.btn_dropDatabase);
+        btn_seeArchive = findViewById(R.id.btn_seeArchive);
         btn_clearSearchHistory = findViewById(R.id.btn_clearSearchHistory);
 
         sw_searchForWord.setSubmitButtonEnabled(true);
@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_dropDatabase.setOnClickListener(new View.OnClickListener() {
+        btn_seeArchive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String projection = WordEntry._ID;
-                getContentResolver().delete(WordEntry.CONTENT_URI, projection, null);
+                Intent intent = new Intent(v.getContext(), ArchiveActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -103,71 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_database, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_insert_dummy_word:
-                insertDummyWord();
-                return true;
-
-            case R.id.action_delete_dummy_word:
-                deleteDummyWord();
-                return true;
-        }
-
-        return onOptionsItemSelected(item);
-    }
-
-    private Uri insertDummyWord() {
-        ContentValues values = new ContentValues();
-        values.put(WordEntry.COLUMN_NAME_CIRCASSIAN, "circassian");
-        values.put(WordEntry.COLUMN_NAME_TURKISH, "turkish");
-
-        ContentValues values1 = new ContentValues();
-        values1.put(WordEntry.COLUMN_NAME_CIRCASSIAN, "abc");
-        values1.put(WordEntry.COLUMN_NAME_TURKISH, "edf");
-
-        ContentValues values2 = new ContentValues();
-        values2.put(WordEntry.COLUMN_NAME_CIRCASSIAN, "zsw");
-        values2.put(WordEntry.COLUMN_NAME_TURKISH, "fdsfsfs");
-
-        Uri uri = getContentResolver().insert(WordEntry.CONTENT_URI, values);
-        Uri uri1 = getContentResolver().insert(WordEntry.CONTENT_URI, values1);
-        Uri uri2 = getContentResolver().insert(WordEntry.CONTENT_URI, values2);
-
-        if (uri == null || uri1 == null || uri2 == null) {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT)
-                    .show();
-        } else {
-            Toast.makeText(this, "Words has been saved", Toast.LENGTH_SHORT)
-                    .show();
-        }
-
-        return uri;
-    }
-
-    private int deleteDummyWord() {
-        String selection = WordEntry._ID + "=?";
-        String[] selectionArgs = {};
-
-        int numOfRowsDeleted =
-                getContentResolver().delete(WordEntry.CONTENT_URI, selection, selectionArgs);
-
-        if (numOfRowsDeleted != 0) {
-            Toast.makeText(this, "Deletion successful", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Deletion failed", Toast.LENGTH_SHORT).show();
-        }
-
-        return numOfRowsDeleted;
     }
 
     private void showSuggestionsForQuery(String queryText) {
@@ -191,7 +127,16 @@ public class MainActivity extends AppCompatActivity {
     private void launchQueryFromSuggestion(int position) {
         Cursor cursor = sw_searchForWord.getSuggestionsAdapter().getCursor();
         if (cursor != null && cursor.moveToPosition(position)) {
-            int columnIndex = cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
+            String[] columnNames = cursor.getColumnNames();
+            int columnIndex = 0;
+            for (String columnName: columnNames) {
+                if (columnName.equals(WordEntry.COLUMN_NAME_CIRCASSIAN)) {
+                    columnIndex = cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
+                }
+                if (columnName.equals(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
+                    columnIndex = cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1);
+                }
+            }
             String suggestion = cursor.getString(columnIndex);
             String action = Intent.ACTION_SEARCH;
             Intent intent = new Intent(action);

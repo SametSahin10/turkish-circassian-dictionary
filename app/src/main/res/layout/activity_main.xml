@@ -15,31 +15,28 @@
         android:queryHint="@string/search_hint"/>
 
     <Button
-        android:id="@+id/btn_clearSearchHistory"
+        android:id="@+id/btn_seeArchive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_above="@id/btn_dropDatabase"
-        android:layout_margin="10dp"
+        android:layout_above="@id/btn_clearSearchHistory"
+        android:padding="20dp"
+        android:background="#FFB546"
+        android:text="See Archive Activity"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btn_clearSearchHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
         android:padding="20dp"
         android:background="#FFB546"
         android:text="Clear Search History"
         android:textAllCaps="false"
         android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/btn_dropDatabase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:background="#FFB546"
-        android:text="Drop Database"
-        android:textAllCaps="false"
-        android:textSize="20sp"/>
-
-
 
 </android.widget.RelativeLayout>

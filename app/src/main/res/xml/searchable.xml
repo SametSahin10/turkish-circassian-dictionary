@@ -3,6 +3,9 @@
     android:label="@string/app_name"
     android:hint="@string/search_hint"
     android:searchMode="queryRewriteFromData|showSearchIconAsBadge"
+    android:searchSuggestAuthority=
+        "com.tur_cirdictionary.turkish_circassiandictionary.data.RecentSuggestionsProvider"
+    android:searchSuggestSelection=" ?"
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
     android:includeInGlobalSearch="true">
 </searchable>
