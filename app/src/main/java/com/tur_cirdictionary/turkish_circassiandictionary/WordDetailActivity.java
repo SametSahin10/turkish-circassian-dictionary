@@ -3,7 +3,6 @@ package com.tur_cirdictionary.turkish_circassiandictionary;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +26,7 @@ public class WordDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_detail);
 
-        tv_circassian = findViewById(R.id.tv_circassian);
+        tv_circassian = findViewById(R.id.tv_suggestedCircassian);
         tv_turkish = findViewById(R.id.tv_turkish);
         tv_circassianMeaning = findViewById(R.id.tv_circassianMeaning);
         tv_turkishMeaning = findViewById(R.id.tv_turkishMeaning);

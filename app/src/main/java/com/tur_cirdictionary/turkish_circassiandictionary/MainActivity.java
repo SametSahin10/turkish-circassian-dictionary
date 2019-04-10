@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.provider.SearchRecentSuggestions;
 import android.support.v7.app.AppCompatActivity;
@@ -109,18 +110,33 @@ public class MainActivity extends AppCompatActivity {
     private void showSuggestionsForQuery(String queryText) {
         String query = queryText;
 
-        String[] projection = {WordEntry._ID, WordEntry.COLUMN_NAME_CIRCASSIAN};
-        String selection = WordEntry.COLUMN_NAME_CIRCASSIAN + " LIKE ?";
+        String[] projectionCircassian = {WordEntry._ID,
+                WordEntry.COLUMN_NAME_CIRCASSIAN};
+        String selectionCircassian = WordEntry.COLUMN_NAME_CIRCASSIAN + " LIKE ?";
         String[] selectionArgs = {query + "%"};
 
-        Cursor cursor = getContentResolver().query(WordEntry.CONTENT_URI,
-                projection,
-                selection,
+        String[] projectionTurkish = {WordEntry._ID,
+                WordEntry.COLUMN_NAME_TURKISH};
+        String selectionTurkish = WordEntry.COLUMN_NAME_TURKISH + " LIKE ?";
+
+        Cursor cursorCircassian = getContentResolver().query(WordEntry.CONTENT_URI,
+                projectionCircassian,
+                selectionCircassian,
                 selectionArgs,
-                null,
+                WordEntry.COLUMN_NAME_CIRCASSIAN + " ASC",
                 null);
 
-        wordCursorAdapter = new WordCursorAdapter(this, cursor);
+        Cursor cursorTurkish = getContentResolver().query(WordEntry.CONTENT_URI,
+                projectionTurkish,
+                selectionTurkish,
+                selectionArgs,
+                WordEntry.COLUMN_NAME_TURKISH + " ASC",
+                null);
+
+        Cursor[] cursors = {cursorCircassian, cursorTurkish};
+        MergeCursor mergedCursor = new MergeCursor(cursors);
+
+        wordCursorAdapter = new WordCursorAdapter(this, mergedCursor);
         sw_searchForWord.setSuggestionsAdapter(wordCursorAdapter);
     }
 

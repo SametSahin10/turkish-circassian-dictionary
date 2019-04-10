@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
@@ -33,13 +34,15 @@ public class ArchiveActivity extends AppCompatActivity
         lw_archiveWordList = findViewById(R.id.lw_archiveWordList);
         View emptyView = findViewById(R.id.empty_view);
         lw_archiveWordList.setEmptyView(emptyView);
-        String[] projection = {WordEntry._ID, WordEntry.COLUMN_NAME_CIRCASSIAN};
+        String[] projection = {WordEntry._ID,
+                WordEntry.COLUMN_NAME_CIRCASSIAN,
+                WordEntry.COLUMN_NAME_TURKISH};
 
         cursor = getContentResolver().query(WordEntry.CONTENT_URI,
                 projection,
                 null,
                 null,
-                null);
+                WordEntry.COLUMN_NAME_CIRCASSIAN + " ASC");
 
         wordCursorAdapter = new WordCursorAdapter(this, cursor);
         lw_archiveWordList.setAdapter(wordCursorAdapter);
@@ -50,7 +53,9 @@ public class ArchiveActivity extends AppCompatActivity
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
         switch (loaderId) {
             case URL_LOADER:
-                String[] projection = {WordEntry._ID, WordEntry.COLUMN_NAME_CIRCASSIAN};
+                String[] projection = {WordEntry._ID,
+                        WordEntry.COLUMN_NAME_CIRCASSIAN,
+                        WordEntry.COLUMN_NAME_TURKISH};
                 return new CursorLoader(this,
                         WordEntry.CONTENT_URI,
                         projection,
