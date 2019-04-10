@@ -24,23 +24,18 @@ public class WordCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-
-//        TextView tv_suggestedCircassian = view.findViewById(R.id.tv_suggestedCircassian);
-//        TextView tv_suggestedTurkish = view.findViewById(R.id.tv_suggestedTurkish);
-
         TextView tv_suggestedWord = view.findViewById(R.id.tv_suggestedWord);
         String columnName = cursor.getColumnName(1);
         if (columnName.equals(WordContract.WordEntry.COLUMN_NAME_CIRCASSIAN)) {
-            String circassian = cursor.getString(cursor.
+            String circassianMeaning = cursor.getString(cursor.
                     getColumnIndexOrThrow(WordContract.WordEntry.COLUMN_NAME_CIRCASSIAN));
-            tv_suggestedWord.setText(circassian);
+            tv_suggestedWord.setText(circassianMeaning);
         } else if (columnName.equals(WordContract.WordEntry.COLUMN_NAME_TURKISH)) {
-            String turkish = cursor.getString(cursor.
+            String turkishMeaning = cursor.getString(cursor.
                     getColumnIndexOrThrow(WordContract.WordEntry.COLUMN_NAME_TURKISH));
-            tv_suggestedWord.setText(turkish);
+            tv_suggestedWord.setText(turkishMeaning);
         } else {
             Log.v("TAG", "Unknown column name");
         }
-
     }
 }

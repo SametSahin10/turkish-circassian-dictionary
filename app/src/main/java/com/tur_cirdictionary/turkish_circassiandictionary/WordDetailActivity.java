@@ -44,8 +44,11 @@ public class WordDetailActivity extends AppCompatActivity {
                     WordEntry.COLUMN_NAME_CIRCASSIAN,
                     WordEntry.COLUMN_NAME_TURKISH};
 
-            String selection = WordEntry.COLUMN_NAME_CIRCASSIAN + "=?";
-            String[] selectionArgs = {query};
+            String selection = WordEntry.COLUMN_NAME_CIRCASSIAN
+                    + "=?"
+                    + " OR "
+                    + WordEntry.COLUMN_NAME_TURKISH + "=?";
+            String[] selectionArgs = {query, query};
 
             cursor = getContentResolver().query(WordEntry.CONTENT_URI,
                     projection,
@@ -69,16 +72,19 @@ public class WordDetailActivity extends AppCompatActivity {
 
                     String circassianMeaning = cursor.getString(columnIndexCircassian);
 
+                    Log.v("TAG", "Circassian: " + circassianMeaning);
+
                     int columnIndexTurkish =
                             cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_TURKISH);
                     String turkishMeaning = cursor.getString(columnIndexTurkish);
 
+                    Log.v("TAG", "Turkish: " + turkishMeaning);
+
                     tv_circassianMeaning.setText(circassianMeaning);
                     tv_turkishMeaning.setText(turkishMeaning);
+                } else {
+                    setContentView(R.layout.activity_word_not_found);
                 }
-            } else {
-                setContentView(R.layout.activity_word_not_found);
-                Log.v("TAG", "Cursor is null");
             }
         }
 

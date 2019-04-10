@@ -148,9 +148,12 @@ public class MainActivity extends AppCompatActivity {
             for (String columnName: columnNames) {
                 if (columnName.equals(WordEntry.COLUMN_NAME_CIRCASSIAN)) {
                     columnIndex = cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
-                }
-                if (columnName.equals(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
+                } else if (columnName.equals(WordEntry.COLUMN_NAME_TURKISH)) {
+                    columnIndex = cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_TURKISH);
+                } else if (columnName.equals(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
                     columnIndex = cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1);
+                } else {
+                    Log.v("TAG", "Unknown column index");
                 }
             }
             String suggestion = cursor.getString(columnIndex);
