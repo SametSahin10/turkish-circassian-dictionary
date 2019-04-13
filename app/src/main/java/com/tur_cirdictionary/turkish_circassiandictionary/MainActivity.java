@@ -8,8 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MergeCursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.provider.SearchRecentSuggestions;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -27,6 +31,8 @@ import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContra
 public class MainActivity extends AppCompatActivity {
 
     SearchView sw_searchForWord;
+    ImageView iv_searchIcon;
+    EditText et_queryText;
     Button btn_seeArchive;
     Button btn_clearSearchHistory;
     SearchableInfo searchableInfo;
@@ -34,12 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         sw_searchForWord = findViewById(R.id.sw_searchForWord);
-        btn_seeArchive = findViewById(R.id.btn_seeArchive);
-        btn_clearSearchHistory = findViewById(R.id.btn_clearSearchHistory);
+//        btn_seeArchive = findViewById(R.id.btn_seeArchive);
+//        btn_clearSearchHistory = findViewById(R.id.btn_clearSearchHistory);
+        int searchIconId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_mag_icon", null, null);
+        iv_searchIcon = sw_searchForWord.findViewById(searchIconId);
+        iv_searchIcon.setImageResource(R.drawable.search_icon);
+
+        int queryTextId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        et_queryText = sw_searchForWord.findViewById(queryTextId);
+        et_queryText.setTextAlignment(EditText.TEXT_ALIGNMENT_CENTER);
 
         sw_searchForWord.setSubmitButtonEnabled(true);
         sw_searchForWord.setQueryRefinementEnabled(true);
@@ -80,31 +94,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_seeArchive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ArchiveActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_clearSearchHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SearchRecentSuggestions recentSuggestions = new SearchRecentSuggestions(getApplicationContext(),
-                        RecentSuggestionsProvider.AUTHORITY,
-                        RecentSuggestionsProvider.MODE);
-
-                recentSuggestions.clearHistory();
-
-                Toast.makeText(MainActivity.this,
-                        "Search history cleared",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
-
-
+//        btn_seeArchive.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), ArchiveActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        btn_clearSearchHistory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SearchRecentSuggestions recentSuggestions = new SearchRecentSuggestions(getApplicationContext(),
+//                        RecentSuggestionsProvider.AUTHORITY,
+//                        RecentSuggestionsProvider.MODE);
+//
+//                recentSuggestions.clearHistory();
+//
+//                Toast.makeText(MainActivity.this,
+//                        "Search history cleared",
+//                        Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//        });
     }
 
     private void showSuggestionsForQuery(String queryText) {

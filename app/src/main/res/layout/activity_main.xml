@@ -3,40 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.tur_cirdictionary.turkish_circassiandictionary.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv_mainActivityBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/main_activity_backgroundone"
+        android:scaleType="centerCrop" />
 
     <SearchView
         android:id="@+id/sw_searchForWord"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_margin="15dp"
-        android:background="#368155"
+        android:background="#008080"
         android:iconifiedByDefault="false"
         android:queryHint="@string/search_hint"/>
-
-    <Button
-        android:id="@+id/btn_seeArchive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_above="@id/btn_clearSearchHistory"
-        android:padding="20dp"
-        android:background="#FFB546"
-        android:text="See Archive Activity"
-        android:textAllCaps="false"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/btn_clearSearchHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="15dp"
-        android:padding="20dp"
-        android:background="#FFB546"
-        android:text="Clear Search History"
-        android:textAllCaps="false"
-        android:textSize="20sp"/>
 
 </android.widget.RelativeLayout>
