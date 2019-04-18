@@ -1,35 +1,42 @@
 package com.tur_cirdictionary.turkish_circassiandictionary;
 
+import android.app.ActionBar;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.graphics.Color;
-import android.net.Uri;
-import android.provider.SearchRecentSuggestions;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.Toast;
-
-import com.tur_cirdictionary.turkish_circassiandictionary.data.RecentSuggestionsProvider;
 
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
 public class MainActivity extends AppCompatActivity {
 
+    View rootView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+
+    Toolbar toolbar;
     SearchView sw_searchForWord;
     ImageView iv_searchIcon;
     EditText et_queryText;
@@ -43,6 +50,53 @@ public class MainActivity extends AppCompatActivity {
 //        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        rootView = findViewById(R.id.root_view);
+        rootView.requestFocus();
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                Intent intent;
+                switch (id) {
+                    case R.id.nav_search:
+                        //Focus on the search bar.
+                        drawerLayout.closeDrawer(Gravity.START, true);
+                        sw_searchForWord.requestFocus();
+                        break;
+                    case R.id.nav_archive:
+                        intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_settings:
+                        intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_info:
+                        //Launch AboutActivity.
+                        break;
+                    case R.id.nav_rate:
+                        //Start rating action.
+                        break;
+                    default:
+                        return true;
+                }
+                return true;
+            }
+        });
 
         sw_searchForWord = findViewById(R.id.sw_searchForWord);
 //        btn_seeArchive = findViewById(R.id.btn_seeArchive);
@@ -117,6 +171,27 @@ public class MainActivity extends AppCompatActivity {
 //                        .show();
 //            }
 //        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        rootView.requestFocus();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_action_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void showSuggestionsForQuery(String queryText) {
