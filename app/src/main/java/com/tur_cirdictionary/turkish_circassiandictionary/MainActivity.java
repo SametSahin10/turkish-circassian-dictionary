@@ -1,15 +1,17 @@
 package com.tur_cirdictionary.turkish_circassiandictionary;
 
-import android.app.ActionBar;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.graphics.Color;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent;
                 switch (id) {
                     case R.id.nav_search:
-                        //Focus on the search bar.
                         drawerLayout.closeDrawer(Gravity.START, true);
                         sw_searchForWord.requestFocus();
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                         break;
                     case R.id.nav_archive:
                         intent = new Intent(getApplicationContext(), ArchiveActivity.class);
@@ -86,10 +90,40 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_info:
-                        //Launch AboutActivity.
+                        intent = new Intent(getApplicationContext(), AboutActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_share:
+                        intent = new Intent();
+                        intent.setAction(Intent.ACTION_SEND);
+                        String appUrl = "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+                        intent.putExtra(Intent.EXTRA_TEXT, appUrl);
+                        intent.setType("text/plain");
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+                        break;
+                    case R.id.nav_feedback:
+                        intent = new Intent(Intent.ACTION_SENDTO);
+                        intent.setData(Uri.parse("mailto:"));
+                        intent.putExtra(Intent.EXTRA_EMAIL, "a.sahin.ual@gmail.com");
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
                         break;
                     case R.id.nav_rate:
-                        //Start rating action.
+                        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+                        intent = new Intent(Intent.ACTION_VIEW, uri);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY
+                                | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                                | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
+                            intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
+                        }
                         break;
                     default:
                         return true;
@@ -108,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
         int queryTextId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         et_queryText = sw_searchForWord.findViewById(queryTextId);
         et_queryText.setTextAlignment(EditText.TEXT_ALIGNMENT_CENTER);
+
+        Typeface roboto = ResourcesCompat.getFont(this, R.font.roboto);
+        et_queryText.setTypeface(roboto);
 
         sw_searchForWord.setSubmitButtonEnabled(true);
         sw_searchForWord.setQueryRefinementEnabled(true);

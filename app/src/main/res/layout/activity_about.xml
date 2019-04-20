@@ -1,9 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/iv_aboutActivityBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/about_activity_backgroundone"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_open_source_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/roboto"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="normal"
+        android:textSize="24sp"
+        android:text="@string/open_source_desc"/>
+
+    <Button
+        android:id="@+id/btn_view_the_source_code"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_open_source_desc"
+        android:padding="15dp"
+        android:background="@drawable/btn_source_code_rounded"
+        android:fontFamily="@font/roboto"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:text="View the source code"/>
+
+    <View
+        style="@style/Divider.Horizontal"
+        android:id="@+id/view_horizontal_divider"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/btn_view_the_source_code"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_horizontal_divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:id="@+id/tv_credits_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:text="Credits"/>
+
+        <TextView
+            android:id="@+id/tv_credits_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:linksClickable="true"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="@string/credits"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/Divider.Horizontal"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/tv_first_paragraph"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_first_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/tv_second_paragraph"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:text="Dictionary: Necat Demirağ"/>
+
+    <TextView
+        android:id="@+id/tv_second_paragraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:text="Developer: Samet Şahin"/>
+
+</android.widget.RelativeLayout>

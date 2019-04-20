@@ -12,6 +12,7 @@
         android:id="@+id/root_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:background="#DCE6DD"
         android:focusableInTouchMode="true">
 
         <android.support.v7.widget.Toolbar
@@ -33,12 +34,12 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <ImageView
-            android:id="@+id/iv_mainActivityBackground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/main_activity_backgroundone"
-            android:scaleType="centerCrop"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_mainActivityBackground"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:src="@drawable/main_activity_background_three"/>-->
 
         <SearchView
             android:id="@+id/sw_searchForWord"
@@ -57,6 +58,7 @@
         android:background="#296529"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
+        app:itemTextAppearance="@style/RobotoTextViewStyle"
         app:menu="@menu/navigation_menu">
 
     </android.support.design.widget.NavigationView>
