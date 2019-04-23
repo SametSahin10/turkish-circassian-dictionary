@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreference
+        android:defaultValue="@bool/showSearchSuggestions"
+        app:key="searchSuggestions"
+        app:title="Show suggestions for query"/>
+
+    <Preference
+        app:key="clearRecentSearchSuggestions"
+        app:title="Clear recent search history"/>
+</PreferenceScreen>

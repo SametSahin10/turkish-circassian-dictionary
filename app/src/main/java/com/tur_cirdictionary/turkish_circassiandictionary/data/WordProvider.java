@@ -45,11 +45,7 @@ public class WordProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection,
                         @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        try {
-            wordDbHelper.createDatabase();
-        } catch (IOException e) {
-            Log.e("TAG", "IOException occured");
-        }
+        wordDbHelper.createDatabase();
         SQLiteDatabase database = wordDbHelper.openDatabase();
         if (database == null) {
             Log.v("TAG", "Database is null");

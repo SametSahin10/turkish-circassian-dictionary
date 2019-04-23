@@ -25,7 +25,7 @@ public class WordDbHelper extends SQLiteOpenHelper {
         this.context = context;
     }
 
-    public void createDatabase() throws IOException {
+    public void createDatabase() {
         boolean dbExist = checkDataBase();
         if (dbExist) {
             //Cool. Don't do anything.

@@ -1,14 +1,17 @@
 package com.tur_cirdictionary.turkish_circassiandictionary;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.res.ResourcesCompat;
@@ -26,6 +29,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -43,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
     SearchView sw_searchForWord;
     ImageView iv_searchIcon;
     EditText et_queryText;
-    Button btn_seeArchive;
-    Button btn_clearSearchHistory;
     SearchableInfo searchableInfo;
     WordCursorAdapter wordCursorAdapter;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +137,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         sw_searchForWord = findViewById(R.id.sw_searchForWord);
-//        btn_seeArchive = findViewById(R.id.btn_seeArchive);
-//        btn_clearSearchHistory = findViewById(R.id.btn_clearSearchHistory);
         int searchIconId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_mag_icon", null, null);
         iv_searchIcon = sw_searchForWord.findViewById(searchIconId);
         iv_searchIcon.setImageResource(R.drawable.search_icon);
@@ -155,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
         if (searchableInfo == null) {
             Log.v("TAG", "searchableInfo is null");
         }
-
         sw_searchForWord.setSearchableInfo(searchableInfo);
         sw_searchForWord.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -165,8 +166,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                boolean showSearchSuggestions = sharedPreferences.getBoolean("showSearchSuggestions", getResources().getBoolean(R.bool.showSearchSuggestions));
                 if (newText.length() > 0) {
-                    showSuggestionsForQuery(newText);
+                    if (showSearchSuggestions) {
+                        showSuggestionsForQuery(newText);
+                    }
                 }
                 return false;
             }
