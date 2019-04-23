@@ -166,11 +166,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                Cursor cursor = sw_searchForWord.getSuggestionsAdapter().getCursor();
+                if (newText.length() == 0) {
+                    cursor.close();
+                }
                 sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 boolean showSearchSuggestions = sharedPreferences.getBoolean("showSearchSuggestions", getResources().getBoolean(R.bool.showSearchSuggestions));
                 if (newText.length() > 0) {
                     if (showSearchSuggestions) {
                         showSuggestionsForQuery(newText);
+                    } else {
+                        cursor.close();
                     }
                 }
                 return false;
