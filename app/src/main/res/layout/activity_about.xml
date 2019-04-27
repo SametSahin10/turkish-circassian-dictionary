@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,11 +16,11 @@
         android:id="@+id/tv_open_source_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_light"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="normal"
@@ -36,10 +35,10 @@
         android:layout_below="@id/tv_open_source_desc"
         android:padding="15dp"
         android:background="@drawable/btn_source_code_rounded"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_regular"
         android:textAllCaps="false"
         android:textSize="20sp"
-        android:text="View the source code"/>
+        android:text="View The Source Code"/>
 
     <View
         style="@style/Divider.Horizontal"
@@ -62,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/roboto_light"
             android:textColor="#000000"
             android:textSize="24sp"
             android:text="Credits"/>
@@ -74,7 +73,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:linksClickable="true"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/roboto_light"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="14sp"
@@ -94,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/tv_second_paragraph"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_light"
         android:textColor="#000000"
         android:textSize="24sp"
         android:text="Dictionary: Necat Demirağ"/>
@@ -106,7 +105,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_light"
         android:textColor="#000000"
         android:textSize="24sp"
         android:text="Developer: Samet Şahin"/>

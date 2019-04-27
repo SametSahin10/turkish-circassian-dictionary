@@ -1,30 +1,35 @@
 package com.tur_cirdictionary.turkish_circassiandictionary;
 
-import android.app.LoaderManager;
-import android.content.ContentValues;
-import android.content.CursorLoader;
-import android.content.Loader;
+
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
+import android.graphics.Color;
+import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
-public class ArchiveActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ArchiveActivity extends AppCompatActivity {
 
-    private static final int URL_LOADER = 0;
 
     ListView lw_archiveWordList;
+    TextView tv_optionCircassian;
+    TextView tv_optionTurkish;
+    Switch switch_listingType;
     WordCursorAdapter wordCursorAdapter;
-    Cursor cursor;
+
+    SearchManager searchManager;
+    SearchableInfo searchableInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,46 +39,57 @@ public class ArchiveActivity extends AppCompatActivity
         lw_archiveWordList = findViewById(R.id.lw_archiveWordList);
         View emptyView = findViewById(R.id.empty_view);
         lw_archiveWordList.setEmptyView(emptyView);
-        String[] projection = {WordEntry._ID,
-                WordEntry.COLUMN_NAME_CIRCASSIAN,
+        String[] projectionCircassian = {WordEntry._ID,
+                WordEntry.COLUMN_NAME_CIRCASSIAN};
+
+        String[] projectionTurkish = {WordEntry._ID,
                 WordEntry.COLUMN_NAME_TURKISH};
 
-        cursor = getContentResolver().query(WordEntry.CONTENT_URI,
-                projection,
+        final Cursor cursorCircassian = getContentResolver().query(WordEntry.CONTENT_URI,
+                projectionCircassian,
                 null,
                 null,
-                WordEntry.COLUMN_NAME_CIRCASSIAN + " ASC");
+                null,
+                null);
 
-        wordCursorAdapter = new WordCursorAdapter(this, cursor);
+        final Cursor cursorTurkish = getContentResolver().query(WordEntry.CONTENT_URI,
+                projectionTurkish,
+                null,
+                null,
+                WordEntry.COLUMN_NAME_TURKISH + " COLLATE NOCASE ASC",
+                null);
+
+        wordCursorAdapter = new WordCursorAdapter(this, cursorCircassian);
         lw_archiveWordList.setAdapter(wordCursorAdapter);
-        getLoaderManager().initLoader(URL_LOADER, null, this);
-    }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
-        switch (loaderId) {
-            case URL_LOADER:
-                String[] projection = {WordEntry._ID,
-                        WordEntry.COLUMN_NAME_CIRCASSIAN,
-                        WordEntry.COLUMN_NAME_TURKISH};
-                return new CursorLoader(this,
-                        WordEntry.CONTENT_URI,
-                        projection,
-                        null,
-                        null,
-                        null);
-            default:
-                return null;
-        }
-    }
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchableInfo = searchManager.getSearchableInfo(getComponentName());
+        lw_archiveWordList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tv_clickedItem = view.findViewById(R.id.tv_word);
+                String query = tv_clickedItem.getText().toString();
+                Intent intent = new Intent(Intent.ACTION_SEARCH);
+                intent.putExtra(SearchManager.QUERY, query);
+                intent.setComponent(searchableInfo.getSearchActivity());
+                startActivity(intent);
+            }
+        });
 
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor dataCursor) {
-        wordCursorAdapter.swapCursor(dataCursor);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        wordCursorAdapter.swapCursor(null);
+        switch_listingType = findViewById(R.id.switch_listingType);
+        switch_listingType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    wordCursorAdapter = new WordCursorAdapter(buttonView.getContext(), cursorTurkish);
+                    lw_archiveWordList.setAdapter(wordCursorAdapter);
+                    switch_listingType.setChecked(true);
+                } else {
+                    wordCursorAdapter = new WordCursorAdapter(buttonView.getContext(), cursorCircassian);
+                    lw_archiveWordList.setAdapter(wordCursorAdapter);
+                    switch_listingType.setChecked(false);
+                }
+            }
+        });
     }
 }

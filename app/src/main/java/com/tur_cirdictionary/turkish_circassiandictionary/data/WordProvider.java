@@ -135,7 +135,7 @@ public class WordProvider extends ContentProvider {
 
         int match = sUriMatcher.match(uri);
 
-        SQLiteDatabase database = wordDbHelper.getWritableDatabase();
+        SQLiteDatabase database = wordDbHelper.openDatabase();
 
         switch (match) {
 
@@ -225,7 +225,7 @@ public class WordProvider extends ContentProvider {
 
         }
 
-        SQLiteDatabase database = wordDbHelper.getWritableDatabase();
+        SQLiteDatabase database = wordDbHelper.openDatabase();
 
         long idOfNewlyInserted = database.insert(WordEntry.TABLE_NAME, null, values);
 
@@ -274,7 +274,7 @@ public class WordProvider extends ContentProvider {
 
         }
 
-        SQLiteDatabase database = wordDbHelper.getWritableDatabase();
+        SQLiteDatabase database = wordDbHelper.openDatabase();
 
         int numOfRowsUpdated =
                 database.update(WordEntry.TABLE_NAME, values, selection, selectionArgs);

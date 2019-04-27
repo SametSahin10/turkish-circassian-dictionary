@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity"/>
         <activity android:name=".SettingsActivity"
             android:theme="@style/AppTheme"/>
         <activity
@@ -18,36 +18,41 @@
             android:label="@string/title_activity_word_detail"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+                android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".ArchiveActivity" />
+        <activity
+            android:name=".ArchiveActivity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".WordDetailActivity"/>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".WordDetailActivity" />
+                android:value=".WordDetailActivity"/>
         </activity>
 
         <provider
             android:name=".data.WordProvider"
             android:authorities="com.tur_cirdictionary.turkish_circassiandictionary"
-            android:exported="false" />
+            android:exported="false"/>
         <provider
             android:name=".data.RecentSuggestionsProvider"
             android:authorities="com.tur_cirdictionary.turkish_circassiandictionary.data.RecentSuggestionsProvider"
-            android:exported="false" />
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -12,19 +12,22 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="AppTheme.Launcher">
-        <item name="android:windowBackground">@drawable/launch_screen </item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/roboto</item>
+    <style name="RobotoRegularMenuItemStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/roboto_regular_res</item>
     </style>
     
     <style name="Divider">
@@ -35,6 +38,12 @@
         <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">#000000</item>
+    </style>
+
+    <style name="Divider.WordDivider" parent="Divider">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#D5D8DC</item>
     </style>
 
 </resources>

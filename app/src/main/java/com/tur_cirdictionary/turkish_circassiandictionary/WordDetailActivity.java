@@ -3,10 +3,15 @@ package com.tur_cirdictionary.turkish_circassiandictionary;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.MergeCursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.tur_cirdictionary.turkish_circassiandictionary.data.RecentSuggestionsProvider;
@@ -14,11 +19,9 @@ import com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.Word
 
 public class WordDetailActivity extends AppCompatActivity {
 
-    TextView tv_circassian;
-    TextView tv_turkish;
-    TextView tv_circassianMeaning;
-    TextView tv_turkishMeaning;
-
+    TextView tv_queriedWord;
+    TextView tv_meaning;
+    Button btn_searchAnotherWord;
     Cursor cursor;
 
     @Override
@@ -26,65 +29,101 @@ public class WordDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_detail);
 
-        tv_circassian = findViewById(R.id.tv_suggestedCircassian);
-        tv_turkish = findViewById(R.id.tv_turkish);
-        tv_circassianMeaning = findViewById(R.id.tv_circassianMeaning);
-        tv_turkishMeaning = findViewById(R.id.tv_turkishMeaning);
+        tv_queriedWord = findViewById(R.id.tv_queriedWord);
+        tv_meaning = findViewById(R.id.tv_meaning);
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             if (query == null) {
-                Log.v("TAG", "Query is null");
+                Log.v("TAG47", "Query is null");
             } else {
-                Log.v("TAG", "Query is not null and it is " + query);
+                Log.v("TAG49", "Query is not null and it is " + query);
             }
 
-            String projection[] = {WordEntry._ID,
+            String[] projectionAll = {WordEntry._ID,
                     WordEntry.COLUMN_NAME_CIRCASSIAN,
                     WordEntry.COLUMN_NAME_TURKISH};
 
-            String selection = WordEntry.COLUMN_NAME_CIRCASSIAN
-                    + "=?"
-                    + " OR "
-                    + WordEntry.COLUMN_NAME_TURKISH + "=?";
-            String[] selectionArgs = {query, query};
+            String[] projectionCircassian = {WordEntry._ID,
+                    WordEntry.COLUMN_NAME_CIRCASSIAN};
+            String selectionCircassian = WordEntry.COLUMN_NAME_CIRCASSIAN + "=?";
+            String[] selectionArgs = {query};
 
-            cursor = getContentResolver().query(WordEntry.CONTENT_URI,
-                    projection,
-                    selection,
+            String[] projectionTurkish = {WordEntry._ID,
+                    WordEntry.COLUMN_NAME_TURKISH};
+            String selectionTurkish = WordEntry.COLUMN_NAME_TURKISH + "=?";
+
+            Cursor cursorCircassian = getContentResolver().query(WordEntry.CONTENT_URI,
+                    projectionCircassian,
+                    selectionCircassian,
                     selectionArgs,
+                    null,
                     null);
 
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    SearchRecentSuggestions recentSuggestions =
-                            new SearchRecentSuggestions(getApplicationContext(),
-                                    RecentSuggestionsProvider.AUTHORITY,
-                                    RecentSuggestionsProvider.MODE);
+            Cursor cursorTurkish = getContentResolver().query(WordEntry.CONTENT_URI,
+                    projectionTurkish,
+                    selectionTurkish,
+                    selectionArgs,
+                    null,
+                    null);
 
-                    recentSuggestions.saveRecentQuery(query, null);
+            Cursor[] cursors = {cursorCircassian, cursorTurkish};
 
-                    int columnIndexCircassian =
-                            cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
+            MergeCursor mergedCursor = new MergeCursor(cursors);
+            if (mergedCursor.moveToFirst()) {
+                SearchRecentSuggestions recentSuggestions =
+                        new SearchRecentSuggestions(getApplicationContext(),
+                                RecentSuggestionsProvider.AUTHORITY,
+                                RecentSuggestionsProvider.MODE);
 
-                    Log.v("TAG", "Column index is: " + columnIndexCircassian);
+                recentSuggestions.saveRecentQuery(query, null);
 
-                    String circassianMeaning = cursor.getString(columnIndexCircassian);
-
-                    Log.v("TAG", "Circassian: " + circassianMeaning);
-
-                    int columnIndexTurkish =
-                            cursor.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_TURKISH);
-                    String turkishMeaning = cursor.getString(columnIndexTurkish);
-
-                    Log.v("TAG", "Turkish: " + turkishMeaning);
-
-                    tv_circassianMeaning.setText(circassianMeaning);
-                    tv_turkishMeaning.setText(turkishMeaning);
-                } else {
-                    setContentView(R.layout.activity_word_not_found);
+                String[] columnNames = mergedCursor.getColumnNames();
+                int columnIndexID;
+                int id;
+                int columnIndexWord;
+                String meaning = null;
+                for (String columnName: columnNames) {
+                    Log.v("TAG90", "Column Name:" + columnName);
+                    if (columnName.equals(WordEntry.COLUMN_NAME_CIRCASSIAN)) {
+                        columnIndexID = mergedCursor.getColumnIndexOrThrow(WordEntry._ID);
+                        id = mergedCursor.getInt(columnIndexID);
+                        String selectionAll = WordEntry._ID + "=?";
+                        String[] selectionArgsAll = {String.valueOf(id)};
+                        Cursor cursorAll = getContentResolver().query(WordEntry.CONTENT_URI,
+                                projectionAll,
+                                selectionAll,
+                                selectionArgsAll,
+                                null);
+                        if (cursorAll != null && cursorAll.moveToFirst()) {
+                            columnIndexWord = cursorAll.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_TURKISH);
+                            meaning  = cursorAll.getString(columnIndexWord);
+                        }
+                        Log.v("TAG94", "Column Name: Circassian");
+                    } else if (columnName.equals(WordEntry.COLUMN_NAME_TURKISH)) {
+                        columnIndexID = mergedCursor.getColumnIndexOrThrow(WordEntry._ID);
+                        id = mergedCursor.getInt(columnIndexID);
+                        String selectionAll = WordEntry._ID + "=?";
+                        String[] selectionArgsAll = {String.valueOf(id)};
+                        Cursor cursorAll = getContentResolver().query(WordEntry.CONTENT_URI,
+                                projectionAll,
+                                selectionAll,
+                                selectionArgsAll,
+                                null);
+                        if (cursorAll != null && cursorAll.moveToFirst()) {
+                            columnIndexWord = cursorAll.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
+                            meaning  = cursorAll.getString(columnIndexWord);
+                        }
+                        Log.v("TAG98", "Column Name: Turkish");
+                    } else {
+                        Log.v("TAG100", "Unknown column name");
+                    }
                 }
+                tv_queriedWord.setText(query);
+                tv_meaning.setText(meaning);
+            } else {
+                setContentView(R.layout.activity_word_not_found);
             }
         }
 
@@ -99,5 +138,16 @@ public class WordDetailActivity extends AppCompatActivity {
 //                Log.v("TAG", "dataUri is null");
 //            }
 //        }
+
+        btn_searchAnotherWord = findViewById(R.id.btn_searchAnotherWord);
+        btn_searchAnotherWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("SourceActivity", "WordDetailActivity");
+                startActivity(intent);
+            }
+        });
+
     }
 }

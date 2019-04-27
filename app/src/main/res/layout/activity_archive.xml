@@ -6,12 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".ArchiveActivity">
 
+    <RelativeLayout
+        android:id="@+id/rellay_listingOptionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#296529">
+
+        <LinearLayout
+            android:id="@+id/linlay_listingOptions"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tv_optionCircassian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:text="Circassian"/>
+
+            <Switch
+                android:id="@+id/switch_listingType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"/>
+
+            <TextView
+                android:id="@+id/tv_optionTurkish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:text="Turkish"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/lw_archiveWordList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/rellay_listingOptionsContainer"
+        android:background="#DCE6DD"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

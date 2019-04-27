@@ -12,10 +12,4 @@
         android:layout_height="match_parent">
     </FrameLayout>
 
-    <!--<fragment-->
-        <!--android:id="@+id/settings_fragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:name="com.tur_cirdictionary.turkish_circassiandictionary.SettingsFragment"/>-->
-
 </android.widget.RelativeLayout>

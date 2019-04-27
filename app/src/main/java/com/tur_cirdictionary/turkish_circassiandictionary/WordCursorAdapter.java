@@ -19,12 +19,12 @@ public class WordCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.item_word, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.item_word_archive, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView tv_suggestedWord = view.findViewById(R.id.tv_suggestedWord);
+        TextView tv_suggestedWord = view.findViewById(R.id.tv_word);
         String columnName = cursor.getColumnName(1);
         if (columnName.equals(WordContract.WordEntry.COLUMN_NAME_CIRCASSIAN)) {
             String circassianMeaning = cursor.getString(cursor.

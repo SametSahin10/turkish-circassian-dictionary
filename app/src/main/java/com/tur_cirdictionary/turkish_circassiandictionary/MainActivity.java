@@ -1,6 +1,5 @@
 package com.tur_cirdictionary.turkish_circassiandictionary;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ActivityNotFoundException;
@@ -22,14 +21,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -51,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     WordCursorAdapter wordCursorAdapter;
 
     SharedPreferences sharedPreferences;
+    InputMethodManager inputMethodManager;
+
+    String extra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_search:
                         drawerLayout.closeDrawer(Gravity.START, true);
                         sw_searchForWord.requestFocus();
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                        showKeyboard();
                         break;
                     case R.id.nav_archive:
                         intent = new Intent(getApplicationContext(), ArchiveActivity.class);
@@ -145,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         et_queryText = sw_searchForWord.findViewById(queryTextId);
         et_queryText.setTextAlignment(EditText.TEXT_ALIGNMENT_CENTER);
 
-        Typeface roboto = ResourcesCompat.getFont(this, R.font.roboto);
+        Typeface roboto = ResourcesCompat.getFont(this, R.font.roboto_regular_res);
         et_queryText.setTypeface(roboto);
 
         sw_searchForWord.setSubmitButtonEnabled(true);
@@ -167,16 +163,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Cursor cursor = sw_searchForWord.getSuggestionsAdapter().getCursor();
-                if (newText.length() == 0) {
-                    cursor.close();
-                }
-                sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                boolean showSearchSuggestions = sharedPreferences.getBoolean("showSearchSuggestions", getResources().getBoolean(R.bool.showSearchSuggestions));
-                if (newText.length() > 0) {
-                    if (showSearchSuggestions) {
-                        showSuggestionsForQuery(newText);
-                    } else {
+                if (cursor != null) {
+                    if (newText.length() == 0) {
                         cursor.close();
+                    }
+                    sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    boolean showSearchSuggestions = sharedPreferences.getBoolean("showSearchSuggestions", getResources().getBoolean(R.bool.showSearchSuggestions));
+                    if (newText.length() > 0) {
+                        if (showSearchSuggestions) {
+                            showSuggestionsForQuery(newText);
+                        } else {
+                            cursor.close();
+                        }
                     }
                 }
                 return false;
@@ -192,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onSuggestionClick(int position) {
                 launchQueryFromSuggestion(position);
+                hideKeyboard();
                 return true;
             }
         });
@@ -219,19 +218,31 @@ public class MainActivity extends AppCompatActivity {
 //                        .show();
 //            }
 //        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        rootView.requestFocus();
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("SourceActivity")) {
+            extra = intent.getExtras().getString("SourceActivity");
+            if (extra.equals("WordDetailActivity")) {
+                Log.v("TAG", "Coming from WordDetailActivity");
+                sw_searchForWord.requestFocus();
+                showKeyboard();
+            }
+        } else {
+            rootView.requestFocus();
+            Log.v("TAG", "rootView focused");
+        }
+        intent.removeExtra("SourceActivity");
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_action_bar, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected void onStop() {
+        super.onStop();
+        hideKeyboard();
     }
 
     @Override
@@ -288,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (columnName.equals(SearchManager.SUGGEST_COLUMN_TEXT_1)) {
                     columnIndex = cursor.getColumnIndexOrThrow(SearchManager.SUGGEST_COLUMN_TEXT_1);
                 } else {
-                    Log.v("TAG", "Unknown column index");
+                    Log.v("TAG", "Unknown column name");
                 }
             }
             String suggestion = cursor.getString(columnIndex);
@@ -301,6 +312,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void showKeyboard() {
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    public void hideKeyboard() {
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
+    }
+
 }
 
 

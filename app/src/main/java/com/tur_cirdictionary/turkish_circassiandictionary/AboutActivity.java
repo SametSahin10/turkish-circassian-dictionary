@@ -40,9 +40,8 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         tv_first_paragraph = findViewById(R.id.tv_first_paragraph);
-        tv_second_paragraph = findViewById(R.id.tv_first_paragraph);
+        tv_second_paragraph = findViewById(R.id.tv_second_paragraph);
         tv_credits_content = findViewById(R.id.tv_credits_content);
         tv_credits_content.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
 }

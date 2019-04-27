@@ -58,7 +58,7 @@
         android:background="#296529"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
-        app:itemTextAppearance="@style/RobotoTextViewStyle"
+        app:itemTextAppearance="@style/RobotoRegularMenuItemStyle"
         app:menu="@menu/navigation_menu">
 
     </android.support.design.widget.NavigationView>
