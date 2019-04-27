@@ -21,8 +21,6 @@ public class ArchiveActivity extends AppCompatActivity {
 
 
     ListView lw_archiveWordList;
-    TextView tv_optionCircassian;
-    TextView tv_optionTurkish;
     Switch switch_listingType;
     ArchiveWordCursorAdapter archiveWordCursorAdapter;
 

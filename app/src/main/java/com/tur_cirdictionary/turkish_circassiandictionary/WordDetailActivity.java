@@ -4,10 +4,8 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -46,12 +44,6 @@ public class WordDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            if (query == null) {
-                Log.v("TAG47", "Query is null");
-            } else {
-                Log.v("TAG49", "Query is not null and it is " + query);
-            }
-
             String[] projectionAll = {WordEntry._ID,
                     WordEntry.COLUMN_NAME_CIRCASSIAN,
                     WordEntry.COLUMN_NAME_TURKISH};
@@ -96,7 +88,6 @@ public class WordDetailActivity extends AppCompatActivity {
                 int columnIndexWord;
                 String meaning = null;
                 for (String columnName: columnNames) {
-                    Log.v("TAG90", "Column Name:" + columnName);
                     if (columnName.equals(WordEntry.COLUMN_NAME_CIRCASSIAN)) {
                         columnIndexID = mergedCursor.getColumnIndexOrThrow(WordEntry._ID);
                         id = mergedCursor.getInt(columnIndexID);
@@ -111,7 +102,6 @@ public class WordDetailActivity extends AppCompatActivity {
                             columnIndexWord = cursorAll.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_TURKISH);
                             meaning  = cursorAll.getString(columnIndexWord);
                         }
-                        Log.v("TAG94", "Column Name: Circassian");
                     } else if (columnName.equals(WordEntry.COLUMN_NAME_TURKISH)) {
                         columnIndexID = mergedCursor.getColumnIndexOrThrow(WordEntry._ID);
                         id = mergedCursor.getInt(columnIndexID);
@@ -126,7 +116,6 @@ public class WordDetailActivity extends AppCompatActivity {
                             columnIndexWord = cursorAll.getColumnIndexOrThrow(WordEntry.COLUMN_NAME_CIRCASSIAN);
                             meaning  = cursorAll.getString(columnIndexWord);
                         }
-                        Log.v("TAG98", "Column Name: Turkish");
                     } else {
                         Log.v("TAG100", "Unknown column name");
                     }

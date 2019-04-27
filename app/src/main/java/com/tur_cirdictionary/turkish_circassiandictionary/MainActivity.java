@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.MergeCursor;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -28,7 +27,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
@@ -53,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -197,31 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-//        btn_seeArchive.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), ArchiveActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        btn_clearSearchHistory.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SearchRecentSuggestions recentSuggestions = new SearchRecentSuggestions(getApplicationContext(),
-//                        RecentSuggestionsProvider.AUTHORITY,
-//                        RecentSuggestionsProvider.MODE);
-//
-//                recentSuggestions.clearHistory();
-//
-//                Toast.makeText(MainActivity.this,
-//                        "Search history cleared",
-//                        Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//        });
-
     }
 
     @Override
@@ -231,13 +203,11 @@ public class MainActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("SourceActivity")) {
             extra = intent.getExtras().getString("SourceActivity");
             if (extra.equals("WordDetailActivity")) {
-                Log.v("TAG", "Coming from WordDetailActivity");
                 sw_searchForWord.requestFocus();
                 showKeyboard();
             }
         } else {
             rootView.requestFocus();
-            Log.v("TAG", "rootView focused");
         }
         intent.removeExtra("SourceActivity");
     }
