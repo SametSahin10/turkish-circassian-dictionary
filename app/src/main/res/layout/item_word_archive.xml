@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_word"
+        android:id="@+id/tv_word_archive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -15,11 +15,6 @@
         android:fontFamily="@font/roboto_light"
         android:textColor="#000000"
         android:textSize="24sp"
-        tools:text="Suggested Word"/>
-
-    <View
-        style="@style/Divider.WordDivider"
-        android:layout_below="@id/tv_word"
-        android:layout_marginStart="20dp"/>
+        tools:text="Word"/>
 
 </RelativeLayout>

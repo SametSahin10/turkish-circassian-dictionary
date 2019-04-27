@@ -12,7 +12,7 @@
         android:id="@+id/root_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="#DCE6DD"
+        android:background="@color/mainActivityBackground"
         android:focusableInTouchMode="true">
 
         <android.support.v7.widget.Toolbar
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="#296529"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <ImageView
@@ -48,7 +48,8 @@
             android:layout_below="@id/toolbar"
             android:background="#296529"
             android:iconifiedByDefault="false"
-            android:queryHint="@string/search_hint"/>
+            android:queryHint="@string/search_hint"
+            android:theme="@style/SearchViewTheme"/>
     </android.widget.RelativeLayout>
 
     <android.support.design.widget.NavigationView
@@ -59,7 +60,8 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         app:itemTextAppearance="@style/RobotoRegularMenuItemStyle"
-        app:menu="@menu/navigation_menu">
+        app:menu="@menu/navigation_menu"
+        android:theme="@style/Theme.AppCompat">
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

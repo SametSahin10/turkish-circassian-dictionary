@@ -6,15 +6,18 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="open_source_desc">"Circassian-Turkish Dictionary is an open source software."</string>
-    <string name="credits">Search Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nArchive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nInformation Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>
+    <string name="credits">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
+    \n\nInformation Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>
     \n\nSettings Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
     \n\nFeedback Icon made by <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nRate Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
     \n\nAbout Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_source_code">View Source Code</string>
+    <string name="title_credits">Credits</string>
+    <string name="name_dictionary_provider">Dictionary: Necat Demirağ</string>
+    <string name="name_developer">Developer: Samet Şahin</string>
+    <string name="listing_option_circassian">Circassian</string>
+    <string name="listing_option_turkish">Turkish</string>
+    <string name="warning_word_not_found">Unfortunately we haven\'t been able find a match</string>
+    <string name="btn_search_another_word">Search Another Word</string>
 
 </resources>

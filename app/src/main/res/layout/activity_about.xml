@@ -37,8 +37,9 @@
         android:background="@drawable/btn_source_code_rounded"
         android:fontFamily="@font/roboto_regular"
         android:textAllCaps="false"
+        android:textColor="@color/mainActivityBackground"
         android:textSize="20sp"
-        android:text="View The Source Code"/>
+        android:text="@string/view_source_code"/>
 
     <View
         style="@style/Divider.Horizontal"
@@ -64,19 +65,19 @@
             android:fontFamily="@font/roboto_light"
             android:textColor="#000000"
             android:textSize="24sp"
-            android:text="Credits"/>
+            android:text="@string/title_credits"/>
 
         <TextView
             android:id="@+id/tv_credits_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:linksClickable="true"
             android:fontFamily="@font/roboto_light"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:text="@string/credits"/>
 
     </LinearLayout>
@@ -96,7 +97,7 @@
         android:fontFamily="@font/roboto_light"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:text="Dictionary: Necat Demirağ"/>
+        android:text="@string/name_dictionary_provider"/>
 
     <TextView
         android:id="@+id/tv_second_paragraph"
@@ -108,6 +109,6 @@
         android:fontFamily="@font/roboto_light"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:text="Developer: Samet Şahin"/>
+        android:text="@string/name_developer"/>
 
 </android.widget.RelativeLayout>

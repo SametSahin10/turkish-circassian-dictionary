@@ -22,7 +22,7 @@ public class WordDetailActivity extends AppCompatActivity {
     TextView tv_queriedWord;
     TextView tv_meaning;
     Button btn_searchAnotherWord;
-    Cursor cursor;
+    Button btn_empty_view_searchAnotherWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,17 @@ public class WordDetailActivity extends AppCompatActivity {
 
         tv_queriedWord = findViewById(R.id.tv_queriedWord);
         tv_meaning = findViewById(R.id.tv_meaning);
+
+
+        btn_searchAnotherWord = findViewById(R.id.btn_searchAnotherWord);
+        btn_searchAnotherWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("SourceActivity", "WordDetailActivity");
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -124,6 +135,15 @@ public class WordDetailActivity extends AppCompatActivity {
                 tv_meaning.setText(meaning);
             } else {
                 setContentView(R.layout.activity_word_not_found);
+                btn_empty_view_searchAnotherWord = findViewById(R.id.btn_emptyView_searchAnotherWord);
+                btn_empty_view_searchAnotherWord.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        intent.putExtra("SourceActivity", "WordDetailActivity");
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
@@ -138,16 +158,5 @@ public class WordDetailActivity extends AppCompatActivity {
 //                Log.v("TAG", "dataUri is null");
 //            }
 //        }
-
-        btn_searchAnotherWord = findViewById(R.id.btn_searchAnotherWord);
-        btn_searchAnotherWord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                intent.putExtra("SourceActivity", "WordDetailActivity");
-                startActivity(intent);
-            }
-        });
-
     }
 }

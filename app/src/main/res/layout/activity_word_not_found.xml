@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/mainActivityBackground">
 
     <ImageView
         android:id="@+id/iw_emptyViewImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:src="@drawable/word_not_found_icon"/>
 
     <TextView
         android:id="@+id/tv_emptyViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_below="@id/iw_emptyViewImage"
-        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto_regular"
         android:textAlignment="center"
-        android:textStyle="bold"
+        android:textColor="#000000"
         android:textSize="24sp"
-        android:text="We are unable to find the word you searched" />
+        android:text="@string/warning_word_not_found"/>
 
-</android.widget.RelativeLayout>
+    <Button
+        android:id="@+id/btn_emptyView_searchAnotherWord"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:background="@drawable/btn_search_again_rounded"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/mainActivityBackground"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:text="@string/btn_search_another_word" />
+
+</RelativeLayout>

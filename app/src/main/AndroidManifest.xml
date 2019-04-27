@@ -11,12 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AboutActivity"/>
-        <activity android:name=".SettingsActivity"
-            android:theme="@style/AppTheme"/>
+        <activity android:name=".SettingsActivity"/>
         <activity
             android:name=".WordDetailActivity"
-            android:label="@string/title_activity_word_detail"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/title_activity_word_detail">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>

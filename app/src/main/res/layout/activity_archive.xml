@@ -29,7 +29,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:text="Circassian"/>
+                android:text="@string/listing_option_circassian"/>
 
             <Switch
                 android:id="@+id/switch_listingType"
@@ -47,7 +47,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:text="Turkish"/>
+                android:text="@string/listing_option_turkish"/>
 
         </LinearLayout>
 
@@ -58,30 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rellay_listingOptionsContainer"
-        android:background="#DCE6DD"/>
-
-    <RelativeLayout
-        android:id="@+id/empty_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/iw_emptyViewImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/ic_launcher_round" />
-
-        <TextView
-            android:id="@+id/tv_emptyViewText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iw_emptyViewImage"
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:text="Where did you put the words :(" />
-
-    </RelativeLayout>
+        android:background="@color/mainActivityBackground"/>
 
 </android.widget.RelativeLayout>

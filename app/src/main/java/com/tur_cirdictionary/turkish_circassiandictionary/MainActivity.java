@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.MergeCursor;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -27,6 +28,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView iv_searchIcon;
     EditText et_queryText;
     SearchableInfo searchableInfo;
-    WordCursorAdapter wordCursorAdapter;
+    SuggestedWordCursorAdapter suggestedWordCursorAdapter;
 
     SharedPreferences sharedPreferences;
     InputMethodManager inputMethodManager;
@@ -141,8 +143,16 @@ public class MainActivity extends AppCompatActivity {
         et_queryText = sw_searchForWord.findViewById(queryTextId);
         et_queryText.setTextAlignment(EditText.TEXT_ALIGNMENT_CENTER);
 
-        Typeface roboto = ResourcesCompat.getFont(this, R.font.roboto_regular_res);
-        et_queryText.setTypeface(roboto);
+        Typeface roboto_regular = ResourcesCompat.getFont(this, R.font.roboto_regular_res);
+        et_queryText.setTypeface(roboto_regular);
+        et_queryText.setTextColor(getResources().getColor(R.color.mainActivityBackground));
+        et_queryText.setHintTextColor(getResources().getColor(R.color.searchViewTextHintColor));
+
+//        sw_searchForWord.setQueryHint();
+
+//        int searchHintTextId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+//        tv_searchHint = sw_searchForWord.findViewById(searchHintTextId);
+//        tv_searchHint.setTextColor(getResources().getColor(android.R.color.white));
 
         sw_searchForWord.setSubmitButtonEnabled(true);
         sw_searchForWord.setQueryRefinementEnabled(true);
@@ -282,8 +292,9 @@ public class MainActivity extends AppCompatActivity {
         Cursor[] cursors = {cursorCircassian, cursorTurkish};
         MergeCursor mergedCursor = new MergeCursor(cursors);
 
-        wordCursorAdapter = new WordCursorAdapter(this, mergedCursor);
-        sw_searchForWord.setSuggestionsAdapter(wordCursorAdapter);
+
+        suggestedWordCursorAdapter = new SuggestedWordCursorAdapter(this, mergedCursor);
+        sw_searchForWord.setSuggestionsAdapter(suggestedWordCursorAdapter);
     }
 
     private void launchQueryFromSuggestion(int position) {

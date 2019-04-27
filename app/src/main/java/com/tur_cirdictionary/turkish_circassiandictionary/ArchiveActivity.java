@@ -6,8 +6,6 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +24,7 @@ public class ArchiveActivity extends AppCompatActivity {
     TextView tv_optionCircassian;
     TextView tv_optionTurkish;
     Switch switch_listingType;
-    WordCursorAdapter wordCursorAdapter;
+    ArchiveWordCursorAdapter archiveWordCursorAdapter;
 
     SearchManager searchManager;
     SearchableInfo searchableInfo;
@@ -37,8 +35,6 @@ public class ArchiveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_archive);
 
         lw_archiveWordList = findViewById(R.id.lw_archiveWordList);
-        View emptyView = findViewById(R.id.empty_view);
-        lw_archiveWordList.setEmptyView(emptyView);
         String[] projectionCircassian = {WordEntry._ID,
                 WordEntry.COLUMN_NAME_CIRCASSIAN};
 
@@ -59,15 +55,15 @@ public class ArchiveActivity extends AppCompatActivity {
                 WordEntry.COLUMN_NAME_TURKISH + " COLLATE NOCASE ASC",
                 null);
 
-        wordCursorAdapter = new WordCursorAdapter(this, cursorCircassian);
-        lw_archiveWordList.setAdapter(wordCursorAdapter);
+        archiveWordCursorAdapter = new ArchiveWordCursorAdapter(this, cursorCircassian);
+        lw_archiveWordList.setAdapter(archiveWordCursorAdapter);
 
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchableInfo = searchManager.getSearchableInfo(getComponentName());
         lw_archiveWordList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tv_clickedItem = view.findViewById(R.id.tv_word);
+                TextView tv_clickedItem = view.findViewById(R.id.tv_word_archive);
                 String query = tv_clickedItem.getText().toString();
                 Intent intent = new Intent(Intent.ACTION_SEARCH);
                 intent.putExtra(SearchManager.QUERY, query);
@@ -81,12 +77,12 @@ public class ArchiveActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    wordCursorAdapter = new WordCursorAdapter(buttonView.getContext(), cursorTurkish);
-                    lw_archiveWordList.setAdapter(wordCursorAdapter);
+                    archiveWordCursorAdapter = new ArchiveWordCursorAdapter(buttonView.getContext(), cursorTurkish);
+                    lw_archiveWordList.setAdapter(archiveWordCursorAdapter);
                     switch_listingType.setChecked(true);
                 } else {
-                    wordCursorAdapter = new WordCursorAdapter(buttonView.getContext(), cursorCircassian);
-                    lw_archiveWordList.setAdapter(wordCursorAdapter);
+                    archiveWordCursorAdapter = new ArchiveWordCursorAdapter(buttonView.getContext(), cursorCircassian);
+                    lw_archiveWordList.setAdapter(archiveWordCursorAdapter);
                     switch_listingType.setChecked(false);
                 }
             }

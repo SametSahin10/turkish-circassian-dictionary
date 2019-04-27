@@ -3,4 +3,6 @@
     <color name="colorPrimary">#296529</color>
     <color name="colorPrimaryDark">#296529</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="mainActivityBackground">#DCE6EB</color>
+    <color name="searchViewTextHintColor">#CCDCE6EA</color>
 </resources>
