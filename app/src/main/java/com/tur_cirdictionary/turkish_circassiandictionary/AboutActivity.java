@@ -14,7 +14,6 @@ public class AboutActivity extends AppCompatActivity {
     TextView tv_open_source_desc;
     Button btn_view_source_code;
     TextView tv_first_paragraph;
-    TextView tv_second_paragraph;
     TextView tv_credits_content;
 
     Intent intent;
@@ -39,9 +38,20 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
-        tv_first_paragraph = findViewById(R.id.tv_first_paragraph);
-        tv_second_paragraph = findViewById(R.id.tv_second_paragraph);
         tv_credits_content = findViewById(R.id.tv_credits_content);
         tv_credits_content.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tv_first_paragraph = findViewById(R.id.tv_first_paragraph);
+        tv_first_paragraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+                intent.putExtra(Intent.EXTRA_EMAIL, "a.sahin.ual@gmail.com");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

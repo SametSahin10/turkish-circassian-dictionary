@@ -148,20 +148,13 @@ public class MainActivity extends AppCompatActivity {
         et_queryText.setTextColor(getResources().getColor(R.color.mainActivityBackground));
         et_queryText.setHintTextColor(getResources().getColor(R.color.searchViewTextHintColor));
 
-//        sw_searchForWord.setQueryHint();
-
-//        int searchHintTextId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-//        tv_searchHint = sw_searchForWord.findViewById(searchHintTextId);
-//        tv_searchHint.setTextColor(getResources().getColor(android.R.color.white));
-
         sw_searchForWord.setSubmitButtonEnabled(true);
         sw_searchForWord.setQueryRefinementEnabled(true);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchableInfo = searchManager
-                .getSearchableInfo(getComponentName());
-        if (searchableInfo == null) {
-            Log.v("TAG", "searchableInfo is null");
+        if (searchManager != null) {
+            searchableInfo = searchManager
+                    .getSearchableInfo(getComponentName());
         }
         sw_searchForWord.setSearchableInfo(searchableInfo);
         sw_searchForWord.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
