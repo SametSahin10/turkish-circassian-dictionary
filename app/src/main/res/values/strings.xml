@@ -6,11 +6,7 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="open_source_desc">"Circassian-Turkish Dictionary is an open source software."</string>
-    <string name="credits">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nInformation Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>
-    \n\nSettings Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nFeedback Icon made by <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
-    \n\nAbout Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
+    <string name="credits">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>       Information Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>       Settings Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>       Feedback Icon made by <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>       About Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
     <string name="view_source_code">View Source Code</string>
     <string name="title_credits">Credits</string>
     <string name="name_dictionary_provider">Dictionary: Necat Demirağ</string>

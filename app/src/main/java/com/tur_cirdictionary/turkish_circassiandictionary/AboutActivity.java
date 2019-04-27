@@ -15,7 +15,6 @@ public class AboutActivity extends AppCompatActivity {
     Button btn_view_source_code;
     TextView tv_first_paragraph;
     TextView tv_credits_content;
-
     Intent intent;
 
     @Override

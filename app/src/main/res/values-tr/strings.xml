@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Çerkezce-Türkçe Sözlük</string>
+    <string name="btn_search_another_word">Başka Bir Arama Yap</string>
+    <string name="credits">Arama ikonu, Arşiv ikonu <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a>, <a href="https://www.flaticon.com">www.flaticon.com</a>       Hakkında ikonu, Puanlama ikonu, Eşleşme bulunamadı Arama ikonu <a href="https://www.freepik.com/">Freepik</a>, <a href="https://www.flaticon.com">https://www.flaticon.com</a>       Ayarlar ikonu <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a>, <a href="https://www.flaticon.com">www.flaticon.com</a>       Geri bildirim ikonu <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a>, <a href="https://www.flaticon.com">www.flaticon.com</a>       Hakkında Sayfası Arkaplanı: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
+    <string name="listing_option_circassian">Çerkezce</string>
+    <string name="name_dictionary_provider">Sözlük: Necat Demirağ</string>
+    <string name="title_activity_settings">Ayarlar</string>
+    <string name="view_source_code">Kaynak Kodu Görüntüle</string>
+    <string name="listing_option_turkish">Türkçe</string>
+    <string name="name_developer">Geliştirici: Samet Şahin</string>
+    <string name="open_source_desc">Çerkezce-Türkçe Sözlük açık kaynaklı bir yazılımdır.</string>
+    <string name="search_hint">Kelime Ara</string>
+    <string name="title_credits">Atıflar</string>
+    <string name="warning_word_not_found">Maalesef bir eşleşme bulunamadı</string>
+</resources>
