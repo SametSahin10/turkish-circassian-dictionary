@@ -47,7 +47,7 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:"));
-                intent.putExtra(Intent.EXTRA_EMAIL, "a.sahin.ual@gmail.com");
+                intent.putExtra(Intent.EXTRA_EMAIL, "demirag.necat@gmail.com");
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
