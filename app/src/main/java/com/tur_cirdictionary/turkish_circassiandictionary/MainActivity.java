@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.graphics.Typeface;
@@ -19,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        checkLanguage();
         setContentView(R.layout.activity_main);
 
         rootView = findViewById(R.id.root_view);
@@ -297,6 +300,17 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
     }
 
+//    public void checkLanguage() {
+//        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        String preferredLanguage = sharedPreferences
+//                .getString("preferredLanguage", Locale.getDefault().getLanguage());
+//        Locale locale = new Locale(preferredLanguage);
+//        Locale.setDefault(locale);
+//        Configuration config = new Configuration();
+//        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+//        config.locale = locale;
+//        getApplicationContext().getResources().updateConfiguration(config, displayMetrics);
+//    }
 }
 
 

@@ -1,10 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Turkish-Circassian Dictionary</string>
     <string name="search_hint">Search a Word</string>
-    <string name="title_activity_word_detail" translatable="false">WordDetailActivity</string>
-    <string name="title_activity_settings" translatable="false">Settings</string>
-    <string name="Open" translatable="false">Open</string>
-    <string name="Close" translatable="false">Close</string>
     <string name="open_source_desc">"Circassian-Turkish Dictionary is an open source software."</string>
     <string name="credits">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
         \n\nInformation Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>
@@ -32,16 +29,4 @@
     <string name="pref_title_search_suggestions">Show suggestions for query</string>
     <string name="pref_title_recent_search_history">Clear recent search history</string>
     <string name="pref_title_preferred_language">Preferred Language</string>
-
-    <string-array name="pref_entry_values_preferred_language">
-        <item>Circassian</item>
-        <item>Turkish</item>
-        <item>English</item>
-    </string-array>
-    <string-array name="pref_entries_preferred_language">
-        <item>@string/default_language_option_circassian</item>
-        <item>@string/default_language_option_turkish</item>
-        <item>@string/default_language_option_english</item>
-    </string-array>
-
 </resources>

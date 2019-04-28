@@ -4,9 +4,15 @@
     <SwitchPreference
         android:defaultValue="@bool/showSearchSuggestions"
         app:key="searchSuggestions"
-        app:title="Show suggestions for query"/>
+        app:title="@string/pref_title_search_suggestions"/>
 
     <Preference
         app:key="clearRecentSearchSuggestions"
-        app:title="Clear recent search history"/>
+        app:title="@string/pref_title_recent_search_history"/>
+
+    <ListPreference
+        app:key="preferredLanguage"
+        app:title="@string/pref_title_preferred_language"
+        android:entries="@array/pref_entries_preferred_language"
+        android:entryValues="@array/pref_entry_values_preferred_language"/>
 </PreferenceScreen>
