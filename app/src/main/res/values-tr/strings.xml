@@ -13,7 +13,7 @@
     <string name="listing_option_turkish">Türkçe</string>
     <string name="name_developer">Geliştirici: Samet Şahin</string>
     <string name="open_source_desc">Çerkezce-Türkçe Sözlük açık kaynaklı bir yazılımdır.</string>
-    <string name="search_hint">Kelime Ara</string>
+    <string name="search_hint">Kelime ara</string>
     <string name="title_credits">Atıflar</string>
     <string name="warning_word_not_found">Maalesef herhangi bir eşleşme bulunamadı</string>
     <string name="default_language_option_circassian">Çerkezce</string>

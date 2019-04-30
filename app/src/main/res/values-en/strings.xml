@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Turkish-Circassian Dictionary</string>
-    <string name="search_hint">Search a Word</string>
+    <string name="search_hint">Search for a word</string>
     <string name="open_source_desc">"Circassian-Turkish Dictionary is an open source software."</string>
     <string name="credits">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>
         \n\nInformation Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a>
