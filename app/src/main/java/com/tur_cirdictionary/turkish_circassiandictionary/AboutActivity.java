@@ -14,7 +14,11 @@ public class AboutActivity extends AppCompatActivity {
     TextView tv_open_source_desc;
     Button btn_view_source_code;
     TextView tv_first_paragraph;
-    TextView tv_credits_content;
+    TextView tv_credits_content_one;
+    TextView tv_credits_content_two;
+    TextView tv_credits_content_three;
+    TextView tv_credits_content_four;
+    TextView tv_credits_content_five;
     Intent intent;
 
     @Override
@@ -37,8 +41,17 @@ public class AboutActivity extends AppCompatActivity {
             }
         });
 
-        tv_credits_content = findViewById(R.id.tv_credits_content);
-        tv_credits_content.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_credits_content_one = findViewById(R.id.tv_credits_content_one);
+        tv_credits_content_two = findViewById(R.id.tv_credits_content_two);
+        tv_credits_content_three = findViewById(R.id.tv_credits_content_three);
+        tv_credits_content_four = findViewById(R.id.tv_credits_content_four);
+        tv_credits_content_five = findViewById(R.id.tv_credits_content_five);
+
+        tv_credits_content_one.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_credits_content_two.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_credits_content_three.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_credits_content_four.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_credits_content_five.setMovementMethod(LinkMovementMethod.getInstance());
 
         tv_first_paragraph = findViewById(R.id.tv_first_paragraph);
         tv_first_paragraph.setOnClickListener(new View.OnClickListener() {

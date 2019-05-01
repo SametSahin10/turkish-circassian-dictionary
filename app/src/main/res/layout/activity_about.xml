@@ -38,6 +38,7 @@
         android:fontFamily="@font/roboto_regular"
         android:textAllCaps="false"
         android:textColor="@color/mainActivityBackground"
+        android:textStyle="bold"
         android:textSize="20sp"
         android:text="@string/view_source_code"/>
 
@@ -67,8 +68,21 @@
             android:textSize="24sp"
             android:text="@string/title_credits"/>
 
+        <!--<TextView-->
+            <!--android:id="@+id/tv_credits_content"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:linksClickable="true"-->
+            <!--android:fontFamily="@font/roboto_light"-->
+            <!--android:textAlignment="center"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="15sp"-->
+            <!--android:text="@string/credits"/>-->
+
         <TextView
-            android:id="@+id/tv_credits_content"
+            android:id="@+id/tv_credits_content_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -78,7 +92,59 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="15sp"
-            android:text="@string/credits"/>
+            android:text="@string/credits_content_one"/>
+
+        <TextView
+            android:id="@+id/tv_credits_content_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:linksClickable="true"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="@string/credits_content_two"/>
+
+        <TextView
+            android:id="@+id/tv_credits_content_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:linksClickable="true"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="@string/credits_content_three"/>
+
+        <TextView
+            android:id="@+id/tv_credits_content_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:linksClickable="true"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="@string/credits_content_four"/>
+
+        <TextView
+            android:id="@+id/tv_credits_content_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:linksClickable="true"
+            android:fontFamily="@font/roboto_light"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="@string/credits_content_five"/>
 
     </LinearLayout>
 
