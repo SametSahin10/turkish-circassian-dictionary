@@ -34,12 +34,10 @@
     <string name="pref_title_preferred_language">Preferred Language</string>
 
     <string-array name="pref_entry_values_preferred_language">
-        <item>Circassian</item>
         <item>Turkish</item>
         <item>English</item>
     </string-array>
     <string-array name="pref_entries_preferred_language">
-        <item>@string/default_language_option_circassian</item>
         <item>@string/default_language_option_turkish</item>
         <item>@string/default_language_option_english</item>
     </string-array>
