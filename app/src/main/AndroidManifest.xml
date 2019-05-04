@@ -9,7 +9,7 @@
         android:logo="@mipmap/app_icon"
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
-        android:configChanges="locale"
+        android:configChanges="locale|orientation"
         android:theme="@style/AppTheme">
         <activity android:name=".AboutActivity"/>
         <activity android:name=".SettingsActivity"/>

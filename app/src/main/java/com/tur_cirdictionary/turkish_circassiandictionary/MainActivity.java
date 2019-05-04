@@ -30,6 +30,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
 
+import java.util.Locale;
+
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        checkLanguage();
+        checkLanguage(this);
         setContentView(R.layout.activity_main);
 
         rootView = findViewById(R.id.root_view);
@@ -107,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_feedback:
                         intent = new Intent(Intent.ACTION_SENDTO);
-                        intent.setData(Uri.parse("mailto:"));
-                        intent.putExtra(Intent.EXTRA_EMAIL, "a.sahin.ual@gmail.com");
+                        intent.setData(Uri.parse("mailto:a.sahin.ual@gmail.com"));
                         if (intent.resolveActivity(getPackageManager()) != null) {
                             startActivity(intent);
                         }
@@ -300,17 +301,30 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
     }
 
-//    public void checkLanguage() {
-//        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        String preferredLanguage = sharedPreferences
-//                .getString("preferredLanguage", Locale.getDefault().getLanguage());
-//        Locale locale = new Locale(preferredLanguage);
-//        Locale.setDefault(locale);
-//        Configuration config = new Configuration();
-//        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-//        config.locale = locale;
-//        getApplicationContext().getResources().updateConfiguration(config, displayMetrics);
-//    }
+    public void checkLanguage(Context context) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String preferredLanguage = sharedPreferences
+                .getString("preferredLanguage", Locale.getDefault().getLanguage());
+        Log.v("TAG", "preferredLanguage: " + preferredLanguage);
+        String preferredLanguageCode = null;
+        if (preferredLanguage.equals("Circassian")) {
+            preferredLanguageCode = "cau";
+        } else if (preferredLanguage.equals("Turkish")) {
+            preferredLanguageCode = "tr";
+        } else if (preferredLanguage.equals("English")) {
+            preferredLanguageCode = "en";
+        } else {
+            Log.v("TAG", "Unknown language selection");
+        }
+        if (preferredLanguageCode != null) {
+            Locale locale = new Locale(preferredLanguageCode);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            config.locale = locale;
+            context.getResources().updateConfiguration(config, displayMetrics);
+        }
+    }
 }
 
 

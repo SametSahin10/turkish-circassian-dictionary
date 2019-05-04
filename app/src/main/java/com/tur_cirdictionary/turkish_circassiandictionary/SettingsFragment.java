@@ -65,7 +65,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                 RecentSuggestionsProvider.MODE);
                 recentSearchSuggestions.clearHistory();
                 Toast.makeText(getContext(),
-                        "Recent search history cleared",
+                        getResources().getString(R.string.recent_search_history_cleared_message),
                         Toast.LENGTH_SHORT)
                         .show();
                 return false;

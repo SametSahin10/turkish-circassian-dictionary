@@ -6,20 +6,6 @@
     android:background="@color/mainActivityBackground"
     tools:context=".WordDetailActivity">
 
-    <!--<TextView-->
-        <!--android:id="@+id/tv_suggestedCircassian"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="30sp"-->
-        <!--android:text="Circassian"/>-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/tv_turkish"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="30sp"-->
-        <!--android:text="Turkish"/>-->
-
     <TextView
         android:id="@+id/tv_queriedWord"
         android:layout_width="wrap_content"
@@ -69,5 +55,4 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:text="@string/btn_search_another_word" />
-
 </android.widget.RelativeLayout>

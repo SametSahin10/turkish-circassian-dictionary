@@ -30,4 +30,5 @@
     <string name="pref_title_recent_search_history">Clear recent search history</string>
     <string name="pref_title_search_suggestions">Show suggestions for query</string>
     <string name="app_name">Turkish-Circassian Dictionary</string>
+    <string name="recent_search_history_cleared_message">Recent search history cleared</string>
 </resources>

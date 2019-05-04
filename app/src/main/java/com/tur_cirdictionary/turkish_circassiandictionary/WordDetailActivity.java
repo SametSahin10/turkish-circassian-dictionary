@@ -30,7 +30,6 @@ public class WordDetailActivity extends AppCompatActivity {
         tv_queriedWord = findViewById(R.id.tv_queriedWord);
         tv_meaning = findViewById(R.id.tv_meaning);
 
-
         btn_searchAnotherWord = findViewById(R.id.btn_searchAnotherWord);
         btn_searchAnotherWord.setOnClickListener(new View.OnClickListener() {
             @Override

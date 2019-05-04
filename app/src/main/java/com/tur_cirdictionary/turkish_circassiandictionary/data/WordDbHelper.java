@@ -4,8 +4,11 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,10 +31,12 @@ public class WordDbHelper extends SQLiteOpenHelper {
     public void createDatabase() {
         boolean dbExist = checkDataBase();
         if (dbExist) {
+            Log.v("Database", "Database exists");
             //Cool. Don't do anything.
         } else {
             try {
-                this.getReadableDatabase();
+                Log.v("Database", "Database does not exists");
+                Log.v("Database", "Copying the database");
                 copyDataBase();
             } catch (IOException e) {
                 throw new Error("Error copying database");
@@ -40,17 +45,16 @@ public class WordDbHelper extends SQLiteOpenHelper {
     }
 
     private boolean checkDataBase() {
-        SQLiteDatabase checkDB = null;
-        try {
-            String path = DATABASE_PATH + DATABASE_NAME;
-            checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);
-        } catch (SQLException e) {
-            //Database does not exist
+        String path = DATABASE_PATH + DATABASE_NAME;
+        File db = new File(path);
+        if (db.exists()) {
+            return true;
         }
-        if (checkDB != null) {
-            checkDB.close();
+        File dir = new File(db.getParent());
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
-        return checkDB != null;
+        return false;
     }
 
     private void copyDataBase() throws IOException {

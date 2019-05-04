@@ -34,13 +34,6 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <!--<ImageView-->
-            <!--android:id="@+id/iv_mainActivityBackground"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@drawable/main_activity_background_three"/>-->
-
         <SearchView
             android:id="@+id/sw_searchForWord"
             android:layout_width="match_parent"
@@ -50,6 +43,22 @@
             android:iconifiedByDefault="false"
             android:queryHint="@string/search_hint"
             android:theme="@style/SearchViewTheme"/>
+
+        <Button
+            android:id="@+id/btn_showSpecialCharacters"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sw_searchForWord"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_search_again_rounded"
+            android:fontFamily="@font/roboto_light"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@color/mainActivityBackground"
+            android:textSize="13sp"
+            android:text="Show Special Characters" />
+
     </android.widget.RelativeLayout>
 
     <android.support.design.widget.NavigationView

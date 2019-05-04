@@ -37,5 +37,4 @@ public class SuggestedWordCursorAdapter extends CursorAdapter {
             Log.v("TAG", "Unknown column name");
         }
     }
-
 }
