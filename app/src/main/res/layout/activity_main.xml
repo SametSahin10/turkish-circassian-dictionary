@@ -44,20 +44,31 @@
             android:queryHint="@string/search_hint"
             android:theme="@style/SearchViewTheme"/>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rw_specialCharacters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"/>
+
         <Button
             android:id="@+id/btn_showSpecialCharacters"
-            android:layout_width="180dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sw_searchForWord"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
             android:background="@drawable/btn_search_again_rounded"
             android:fontFamily="@font/roboto_light"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textColor="@color/mainActivityBackground"
-            android:textSize="13sp"
-            android:text="Show Special Characters" />
+            android:textSize="24sp"
+            android:text="@string/show_special_characters" />
 
     </android.widget.RelativeLayout>
 

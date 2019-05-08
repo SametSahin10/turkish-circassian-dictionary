@@ -19,6 +19,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,6 +28,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -45,8 +48,13 @@ public class MainActivity extends AppCompatActivity {
     SearchView sw_searchForWord;
     ImageView iv_searchIcon;
     EditText et_queryText;
+    Button btn_showSpecialCharacters;
     SearchableInfo searchableInfo;
     SuggestedWordCursorAdapter suggestedWordCursorAdapter;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter recyclerViewAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     SharedPreferences sharedPreferences;
     InputMethodManager inputMethodManager;
@@ -198,6 +206,27 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        recyclerView = findViewById(R.id.rw_specialCharacters);
+        recyclerView.setVisibility(View.INVISIBLE);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        String[] specialCharacters = {"a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
+        recyclerViewAdapter = new SpecialCharacterAdapter(specialCharacters);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+        btn_showSpecialCharacters = findViewById(R.id.btn_showSpecialCharacters);
+        btn_showSpecialCharacters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_showSpecialCharacters.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     @Override

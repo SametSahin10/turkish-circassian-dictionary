@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="openSourceDescTextSize">28sp</dimen>
+    <dimen name="creditsTitleTextSize">28sp</dimen>
+    <dimen name="creditsContentTextSize">22sp</dimen>
+    <dimen name="paragraphsTextSize">28sp</dimen>
+</resources>

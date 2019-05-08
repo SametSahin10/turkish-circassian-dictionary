@@ -35,4 +35,5 @@
     <string name="pref_title_recent_search_history">Arama Geçmişini Temizle</string>
     <string name="pref_title_search_suggestions">Arama Önerileri Göster</string>
     <string name="recent_search_history_cleared_message">Arama geçmişi temizlendi</string>
+    <string name="show_special_characters">Özel Karakterleri Göster</string>
 </resources>

@@ -38,6 +38,7 @@
     <string name="pref_title_recent_search_history">Clear recent search history</string>
     <string name="pref_title_preferred_language">Preferred Language</string>
     <string name="recent_search_history_cleared_message">Recent search history cleared</string>
+    <string name="show_special_characters">Show Special Characters</string>
 
     <string-array name="pref_entry_values_preferred_language">
         <item>Turkish</item>
