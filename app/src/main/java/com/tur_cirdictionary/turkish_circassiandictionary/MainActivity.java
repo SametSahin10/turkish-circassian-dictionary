@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -37,7 +38,7 @@ import java.util.Locale;
 
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CharacterRecyclerAdapter.OnCharacterListener {
 
     View rootView;
     DrawerLayout drawerLayout;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     InputMethodManager inputMethodManager;
 
     String extra;
+    String[] specialCharacters = {"a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,11 +216,18 @@ public class MainActivity extends AppCompatActivity {
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        String[] specialCharacters = {"a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
-        recyclerViewAdapter = new SpecialCharacterAdapter(specialCharacters);
+        recyclerViewAdapter = new CharacterRecyclerAdapter(specialCharacters, this);
         recyclerView.setAdapter(recyclerViewAdapter);
 
+        Drawable drawable = getResources().getDrawable(R.drawable.special_characters);
+        drawable.setBounds(0,
+                            0,
+                            (int) (drawable.getIntrinsicWidth() * 0.08f),
+                            (int) (drawable.getIntrinsicHeight() * 0.08f));
         btn_showSpecialCharacters = findViewById(R.id.btn_showSpecialCharacters);
+        btn_showSpecialCharacters.setCompoundDrawablePadding((int) (10 * getResources().getDisplayMetrics().density));
+        btn_showSpecialCharacters.setCompoundDrawables(drawable, null, null, null);
+
         btn_showSpecialCharacters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -353,6 +362,18 @@ public class MainActivity extends AppCompatActivity {
             config.locale = locale;
             context.getResources().updateConfiguration(config, displayMetrics);
         }
+    }
+
+    @Override
+    public void onCharacterClick(int position) {
+        String characterClicked = specialCharacters[position];
+        et_queryText.append(characterClicked);
+//        String queryText = et_queryText.getText().toString();
+//        Log.v("TAG", "Query text: " + queryText);
+//        queryText += characterClicked;
+        Log.v("TAG", "New query text: " + et_queryText.getText().toString());
+//        et_queryText.setText(queryText);
+        //Edit the search text.
     }
 }
 

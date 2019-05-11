@@ -67,8 +67,8 @@
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textColor="@color/mainActivityBackground"
-            android:textSize="24sp"
-            android:text="@string/show_special_characters" />
+            android:textSize="20sp"
+            android:text="@string/special_characters" />
 
     </android.widget.RelativeLayout>
 
