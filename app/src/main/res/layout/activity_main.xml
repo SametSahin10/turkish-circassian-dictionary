@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.widget.RelativeLayout
         tools:context="com.tur_cirdictionary.turkish_circassiandictionary.MainActivity"
         android:id="@+id/root_view"
         android:layout_height="match_parent"
@@ -44,20 +44,50 @@
             android:queryHint="@string/search_hint"
             android:theme="@style/SearchViewTheme"/>
 
-        <Button
-            android:id="@+id/btn_showSpecialCharacters"
-            android:layout_width="180dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rw_specialCharacters"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sw_searchForWord"
+            android:scrollbars="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btn_closePanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rw_specialCharacters"
             android:layout_alignParentEnd="true"
             android:layout_margin="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:background="@drawable/btn_search_again_rounded"
-            android:fontFamily="@font/roboto_light"
+            android:fontFamily="@font/roboto_regular"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textColor="@color/mainActivityBackground"
-            android:textSize="13sp"
-            android:text="Show Special Characters" />
+            android:textSize="16sp"
+            android:text="@string/close_special_character_panel" />
+
+        <Button
+            android:id="@+id/btn_showSpecialCharacters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:background="@drawable/btn_search_again_rounded"
+            android:fontFamily="@font/roboto_regular"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@color/mainActivityBackground"
+            android:textSize="20sp"
+            android:text="@string/special_characters" />
 
     </android.widget.RelativeLayout>
 

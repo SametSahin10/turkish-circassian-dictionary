@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -19,13 +20,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -34,7 +40,7 @@ import java.util.Locale;
 
 import static com.tur_cirdictionary.turkish_circassiandictionary.data.WordContract.WordEntry;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CharacterRecyclerAdapter.OnCharacterListener {
 
     View rootView;
     DrawerLayout drawerLayout;
@@ -45,13 +51,20 @@ public class MainActivity extends AppCompatActivity {
     SearchView sw_searchForWord;
     ImageView iv_searchIcon;
     EditText et_queryText;
+    Button btn_showSpecialCharacters;
+    Button btn_closePanel;
     SearchableInfo searchableInfo;
     SuggestedWordCursorAdapter suggestedWordCursorAdapter;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter recyclerViewAdapter;
+    RecyclerView.LayoutManager layoutManager;
 
     SharedPreferences sharedPreferences;
     InputMethodManager inputMethodManager;
 
     String extra;
+    String[] specialCharacters = {"á", "ć", "é", "ǵ", "ĥ", "ḣ", "ķ", "ḱ", "ľ", "ṕ", "š", "ś", "š", "ṫ", "ĺ", "ź"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,6 +211,54 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        recyclerView = findViewById(R.id.rw_specialCharacters);
+        recyclerView.setVisibility(View.INVISIBLE);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recyclerViewAdapter = new CharacterRecyclerAdapter(specialCharacters, this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+        Drawable closePanelDrawable = getResources().getDrawable(R.drawable.close_special_character_panel);
+        closePanelDrawable.setBounds(0,
+                                    0,
+                                    (int) (closePanelDrawable.getIntrinsicWidth() * 0.04f),
+                                    (int) (closePanelDrawable.getIntrinsicHeight() * 0.04f));
+
+        btn_closePanel = findViewById(R.id.btn_closePanel);
+        btn_closePanel.setCompoundDrawables(closePanelDrawable, null, null, null);
+        btn_closePanel.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
+        btn_closePanel.setVisibility(View.INVISIBLE);
+
+        Drawable specialCharactersDrawable = getResources().getDrawable(R.drawable.special_characters);
+        specialCharactersDrawable.setBounds(0,
+                            0,
+                            (int) (specialCharactersDrawable.getIntrinsicWidth() * 0.08f),
+                            (int) (specialCharactersDrawable.getIntrinsicHeight() * 0.08f));
+        btn_showSpecialCharacters = findViewById(R.id.btn_showSpecialCharacters);
+        btn_showSpecialCharacters.setCompoundDrawablePadding((int) (15 * getResources().getDisplayMetrics().density));
+        btn_showSpecialCharacters.setCompoundDrawables(specialCharactersDrawable, null, null, null);
+
+        btn_showSpecialCharacters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fadeOut(btn_showSpecialCharacters);
+                slideInFromRight(btn_closePanel);
+                slideInFromBottom(recyclerView);
+            }
+        });
+
+        btn_closePanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideOutToRight(btn_closePanel);
+                slideOutToBottom(recyclerView);
+                fadeIn(btn_showSpecialCharacters);
+            }
+        });
     }
 
     @Override
@@ -324,6 +385,58 @@ public class MainActivity extends AppCompatActivity {
             config.locale = locale;
             context.getResources().updateConfiguration(config, displayMetrics);
         }
+    }
+
+    @Override
+    public void onCharacterClick(int position) {
+        String characterClicked = specialCharacters[position];
+        et_queryText.append(characterClicked);
+    }
+
+    public void slideInFromBottom(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, 0, view.getHeight() + 60, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void slideInFromRight(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(view.getWidth() + 60, 0, 0, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void slideOutToBottom(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, 0, 0, view.getHeight() + 60);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    public void slideOutToRight(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, view.getWidth() + 60, 0, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    public void fadeIn(View view) {
+        view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in));
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void fadeOut(View view) {
+        view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_out));
+        view.setVisibility(View.INVISIBLE);
     }
 }
 

@@ -15,9 +15,9 @@
     <string name="open_source_desc">Çerkezce-Türkçe Sözlük açık kaynaklı bir yazılımdır.</string>
     <string name="search_hint">Kelime ara</string>
     <string name="title_credits">Atıflar</string>
-    <string name="credits_content_one">Arama ikonu, Arşiv ikonu <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a>, <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_one">Arama ikonu, Arşiv ikonu, Özel Karakterler ikonu <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a>, <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_two">Hakkında ikonu, Puanlama ikonu, Eşleşme bulunamadı Arama ikonu <a href="https://www.freepik.com/">Freepik</a>, <a href="https://www.flaticon.com">https://www.flaticon.com</a></string>
-    <string name="credits_content_three">Ayarlar ikonu <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a>, <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_three">Ayarlar ikonu, Özel Karakterler Panelini Kapat ikonu <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a>, <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_four">Geri bildirim ikonu <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a>, <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_five">Hakkında Sayfası Arkaplanı: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
     <string name="warning_word_not_found">Maalesef herhangi bir eşleşme bulunamadı</string>
@@ -35,4 +35,7 @@
     <string name="pref_title_recent_search_history">Arama Geçmişini Temizle</string>
     <string name="pref_title_search_suggestions">Arama Önerileri Göster</string>
     <string name="recent_search_history_cleared_message">Arama geçmişi temizlendi</string>
+    <string name="special_characters">Özel Karakterler</string>
+    <string name="close_special_character_panel">Kapat</string>
+    <string name="swipe_for_more">Swipe for more</string>
 </resources>
