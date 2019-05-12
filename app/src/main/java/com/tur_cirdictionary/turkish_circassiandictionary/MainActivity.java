@@ -28,6 +28,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
     ImageView iv_searchIcon;
     EditText et_queryText;
     Button btn_showSpecialCharacters;
+    Button btn_closePanel;
     SearchableInfo searchableInfo;
     SuggestedWordCursorAdapter suggestedWordCursorAdapter;
 
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
     InputMethodManager inputMethodManager;
 
     String extra;
-    String[] specialCharacters = {"a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"};
+    String[] specialCharacters = {"á", "ć", "é", "ǵ", "ĥ", "ḣ", "ķ", "ḱ", "ľ", "ṕ", "š", "ś", "š", "ṫ", "ĺ", "ź"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,23 +222,43 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
         recyclerViewAdapter = new CharacterRecyclerAdapter(specialCharacters, this);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-        Drawable drawable = getResources().getDrawable(R.drawable.special_characters);
-        drawable.setBounds(0,
+        Drawable closePanelDrawable = getResources().getDrawable(R.drawable.close_special_character_panel);
+        closePanelDrawable.setBounds(0,
+                                    0,
+                                    (int) (closePanelDrawable.getIntrinsicWidth() * 0.04f),
+                                    (int) (closePanelDrawable.getIntrinsicHeight() * 0.04f));
+
+        btn_closePanel = findViewById(R.id.btn_closePanel);
+        btn_closePanel.setCompoundDrawables(closePanelDrawable, null, null, null);
+        btn_closePanel.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
+        btn_closePanel.setVisibility(View.INVISIBLE);
+
+        Drawable specialCharactersDrawable = getResources().getDrawable(R.drawable.special_characters);
+        specialCharactersDrawable.setBounds(0,
                             0,
-                            (int) (drawable.getIntrinsicWidth() * 0.08f),
-                            (int) (drawable.getIntrinsicHeight() * 0.08f));
+                            (int) (specialCharactersDrawable.getIntrinsicWidth() * 0.08f),
+                            (int) (specialCharactersDrawable.getIntrinsicHeight() * 0.08f));
         btn_showSpecialCharacters = findViewById(R.id.btn_showSpecialCharacters);
-        btn_showSpecialCharacters.setCompoundDrawablePadding((int) (10 * getResources().getDisplayMetrics().density));
-        btn_showSpecialCharacters.setCompoundDrawables(drawable, null, null, null);
+        btn_showSpecialCharacters.setCompoundDrawablePadding((int) (15 * getResources().getDisplayMetrics().density));
+        btn_showSpecialCharacters.setCompoundDrawables(specialCharactersDrawable, null, null, null);
 
         btn_showSpecialCharacters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_showSpecialCharacters.setVisibility(View.INVISIBLE);
-                recyclerView.setVisibility(View.VISIBLE);
+                fadeOut(btn_showSpecialCharacters);
+                slideInFromRight(btn_closePanel);
+                slideInFromBottom(recyclerView);
             }
         });
 
+        btn_closePanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slideOutToRight(btn_closePanel);
+                slideOutToBottom(recyclerView);
+                fadeIn(btn_showSpecialCharacters);
+            }
+        });
     }
 
     @Override
@@ -368,12 +391,52 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
     public void onCharacterClick(int position) {
         String characterClicked = specialCharacters[position];
         et_queryText.append(characterClicked);
-//        String queryText = et_queryText.getText().toString();
-//        Log.v("TAG", "Query text: " + queryText);
-//        queryText += characterClicked;
-        Log.v("TAG", "New query text: " + et_queryText.getText().toString());
-//        et_queryText.setText(queryText);
-        //Edit the search text.
+    }
+
+    public void slideInFromBottom(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, 0, view.getHeight() + 60, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void slideInFromRight(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(view.getWidth() + 60, 0, 0, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void slideOutToBottom(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, 0, 0, view.getHeight() + 60);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    public void slideOutToRight(View view) {
+        TranslateAnimation animation =
+                new TranslateAnimation(0, view.getWidth() + 60, 0, 0);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(View.INVISIBLE);
+    }
+
+    public void fadeIn(View view) {
+        view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in));
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void fadeOut(View view) {
+        view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_out));
+        view.setVisibility(View.INVISIBLE);
     }
 }
 

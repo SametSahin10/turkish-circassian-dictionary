@@ -10,16 +10,16 @@
         \n\nAbout Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
     <string name="view_source_code">View Source Code</string>
     <string name="title_credits">Credits</string>
-    <string name="credits_content_one">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_one">Search Icon, Archive Icon, Special Characters Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_two">Information Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a></string>
-    <string name="credits_content_three">Settings Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_three">Settings Icon, Close Special Character Panel Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_four">Feedback Icon made by <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_five">About Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
     <string name="name_dictionary_provider">Dictionary: Necat Demirağ</string>
     <string name="name_developer">Developer: Samet Şahin</string>
     <string name="listing_option_circassian">Circassian</string>
     <string name="listing_option_turkish">Turkish</string>
-    <string name="warning_word_not_found">Unfortunately we haven\'t been able find a match</string>
+    <string name="warning_word_not_found">Unfortunately we haven\'t been able to find a match</string>
     <string name="btn_search_another_word">Search Another Word</string>
     <string name="default_language_option_circassian">Circassian</string>
     <string name="default_language_option_turkish">Turkish</string>
@@ -36,4 +36,6 @@
     <string name="pref_title_preferred_language">Preferred Language</string>
     <string name="recent_search_history_cleared_message">Recent search history cleared</string>
     <string name="special_characters">Special Characters</string>
+    <string name="close_special_character_panel">Close</string>
+    <string name="swipe_for_more">Swipe for more</string>
 </resources>

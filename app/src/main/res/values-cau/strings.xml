@@ -9,13 +9,13 @@
     <string name="open_source_desc">Circassian-Turkish Dictionary is an open source software.</string>
     <string name="search_hint">Search for a word</string>
     <string name="title_credits">Credits</string>
-    <string name="credits_content_one">Search Icon, Archive Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_one">Search Icon, Archive Icon, Special Characters Icon made by <a href="https://www.flaticon.com/authors/smashicons">SmashIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_two">Information Icon, Rate Icon, No Match Search Icon made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com">https://www.flaticon.com</a></string>
-    <string name="credits_content_three">Settings Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
+    <string name="credits_content_three">Settings Icon, Close Special Character Panel Icon made by <a href="https://www.flaticon.com/authors/gregor-cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_four">Feedback Icon made by <a href="https://www.flaticon.com/authors/those-icons">ThoseIcons</a> from <a href="https://www.flaticon.com">www.flaticon.com</a></string>
     <string name="credits_content_five">About Page Background: Photo by <a href="https://unsplash.com/@scottwebb">Scott Webb</a> on <a href="https://unsplash.com">Unsplash</a></string>
     <string name="view_source_code">View Source Code</string>
-    <string name="warning_word_not_found">Unfortunately we haven\'t been able find a match</string>
+    <string name="warning_word_not_found">Unfortunately we haven\'t been able to find a match</string>
     <string name="default_language_option_circassian">Circassian</string>
     <string name="default_language_option_turkish">Turkish</string>
     <string name="default_language_option_english">English</string>
@@ -32,4 +32,6 @@
     <string name="app_name">Turkish-Circassian Dictionary</string>
     <string name="recent_search_history_cleared_message">Recent search history cleared</string>
     <string name="special_characters">Special Characters</string>
+    <string name="close_special_character_panel">Close</string>
+    <string name="swipe_for_more">Swipe for more</string>
 </resources>

@@ -18,7 +18,7 @@ public class CharacterRecyclerAdapter extends RecyclerView.Adapter<CharacterRecy
     @Override
     public CharacterRecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Button btn_specialCharacter = (Button) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.special_character_view, parent, false);
+                .inflate(R.layout.item_special_character, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(btn_specialCharacter, onCharacterListener);
         return myViewHolder;
     }
