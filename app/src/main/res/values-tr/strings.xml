@@ -36,6 +36,6 @@
     <string name="pref_title_search_suggestions">Arama Önerileri Göster</string>
     <string name="recent_search_history_cleared_message">Arama geçmişi temizlendi</string>
     <string name="special_characters">Özel Karakterler</string>
-    <string name="close_special_character_panel">Close</string>
+    <string name="close_special_character_panel">Kapat</string>
     <string name="swipe_for_more">Swipe for more</string>
 </resources>
