@@ -6,7 +6,7 @@ android {
         applicationId "com.tur_cirdictionary.turkish_circassiandictionary"
         minSdkVersion 18
         targetSdkVersion 26
-        versionCode 12
+        versionCode 13
         versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true

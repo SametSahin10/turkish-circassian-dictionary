@@ -25,7 +25,7 @@
     <string name="default_language_option_turkish">Türkçe</string>
     <string name="default_language_option_english">İngilizce</string>
     <string name="nav_item_text_about">Hakkında</string>
-    <string name="nav_item_text_archive">Arşiv</string>
+    <string name="nav_item_text_archive">Kelime Listesi</string>
     <string name="nav_item_text_feedback">Geri bildirim</string>
     <string name="nav_item_text_rate">Değerlendir</string>
     <string name="nav_item_text_search">Ara</string>
