@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
     InputMethodManager inputMethodManager;
 
     String extra;
-    String[] specialCharacters = {"á", "ć", "é", "ǵ", "ĥ", "ḣ", "ķ", "ḱ", "ľ", "ṕ", "š", "ś", "š", "ṫ", "ĺ", "ź"};
+    String[] specialCharacters = {"á", "ć", "é", "ǵ", "ḣ", "j´", "ķ", "ḱ", "ľ", "ṕ", "š", "ś", "š", "ṫ", "ĺ", "ź"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,12 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
                         sw_searchForWord.requestFocus();
                         showKeyboard();
                         break;
-                    case R.id.nav_archive:
+                    case R.id.nav_word_list:
                         intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_alphabet:
+                        intent = new Intent(getApplicationContext(), AlphabetActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_settings:

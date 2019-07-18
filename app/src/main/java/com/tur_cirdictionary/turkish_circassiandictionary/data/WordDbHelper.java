@@ -19,7 +19,7 @@ public class WordDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static String DATABASE_PATH
             = "/data/data/com.tur_cirdictionary.turkish_circassiandictionary/databases/";
-    private static final String DATABASE_NAME = "Cir_Tur.sqlite";
+    private static final String DATABASE_NAME = "Cir_Tur_1.sqlite";
     private SQLiteDatabase database;
     private final Context context;
 

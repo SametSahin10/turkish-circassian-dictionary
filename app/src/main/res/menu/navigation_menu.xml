@@ -4,9 +4,13 @@
           android:icon="@drawable/search_icon"
           android:title="@string/nav_item_text_search"/>
 
-    <item android:id="@+id/nav_archive"
-          android:icon="@drawable/archive_icon"
+    <item android:id="@+id/nav_word_list"
+          android:icon="@drawable/word_list_icon"
           android:title="@string/nav_item_text_archive"/>
+
+    <item android:id="@+id/nav_alphabet"
+          android:icon="@drawable/ic_alphabet"
+          android:title="@string/nav_item_text_alphabet"/>
 
     <item android:id="@+id/nav_settings"
           android:icon="@drawable/settings_icon"
