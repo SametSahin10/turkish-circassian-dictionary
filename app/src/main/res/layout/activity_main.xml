@@ -70,7 +70,7 @@
             android:textStyle="bold"
             android:textColor="@color/mainActivityBackground"
             android:textSize="16sp"
-            android:text="@string/close_special_character_panel" />
+            android:text="@string/close_special_character_panel"/>
 
         <Button
             android:id="@+id/btn_showSpecialCharacters"
