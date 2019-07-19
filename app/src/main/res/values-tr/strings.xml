@@ -38,4 +38,5 @@
     <string name="special_characters">Özel Karakterler</string>
     <string name="close_special_character_panel">Kapat</string>
     <string name="swipe_for_more">Swipe for more</string>
+    <string name="nav_item_text_alphabet">Alfabe</string>
 </resources>

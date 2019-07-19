@@ -41,6 +41,7 @@
     <string name="special_characters">Special Characters</string>
     <string name="close_special_character_panel">Close</string>
     <string name="swipe_for_more">Swipe for more</string>
+    <string name="nav_item_text_alphabet">Alphabet</string>
 
     <string-array name="pref_entry_values_preferred_language">
         <item>Turkish</item>
