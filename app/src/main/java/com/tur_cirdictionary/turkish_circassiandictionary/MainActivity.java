@@ -92,65 +92,58 @@ public class MainActivity extends AppCompatActivity implements CharacterRecycler
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 Intent intent;
-                switch (id) {
-                    case R.id.nav_search:
-                        drawerLayout.closeDrawer(Gravity.START, true);
-                        sw_searchForWord.requestFocus();
-                        showKeyboard();
-                        break;
-                    case R.id.nav_word_list:
-                        intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+
+                if (id == R.id.nav_search) {
+                    drawerLayout.closeDrawer(Gravity.START, true);
+                    sw_searchForWord.requestFocus();
+                    showKeyboard();
+                } else if (id == R.id.nav_word_list) {
+                    intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_alphabet) {
+                    intent = new Intent(getApplicationContext(), AlphabetActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_settings) {
+                    intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_info) {
+                    intent = new Intent(getApplicationContext(), AboutActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_share) {
+                    intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    String appUrl = "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+                    intent.putExtra(Intent.EXTRA_TEXT, appUrl);
+                    intent.setType("text/plain");
+                    if (intent.resolveActivity(getPackageManager()) != null) {
                         startActivity(intent);
-                        break;
-                    case R.id.nav_alphabet:
-                        intent = new Intent(getApplicationContext(), AlphabetActivity.class);
+                    }
+                } else if (id == R.id.nav_feedback) {
+                    intent = new Intent(Intent.ACTION_SENDTO);
+                    intent.setData(Uri.parse("mailto:a.sahin.ual@gmail.com"));
+                    if (intent.resolveActivity(getPackageManager()) != null) {
                         startActivity(intent);
-                        break;
-                    case R.id.nav_settings:
-                        intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    }
+                } else if (id == R.id.nav_rate) {
+                    Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+                    intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY
+                            | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+                            | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    try {
                         startActivity(intent);
-                        break;
-                    case R.id.nav_info:
-                        intent = new Intent(getApplicationContext(), AboutActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_share:
-                        intent = new Intent();
-                        intent.setAction(Intent.ACTION_SEND);
-                        String appUrl = "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
-                        intent.putExtra(Intent.EXTRA_TEXT, appUrl);
-                        intent.setType("text/plain");
-                        if (intent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(intent);
-                        }
-                        break;
-                    case R.id.nav_feedback:
-                        intent = new Intent(Intent.ACTION_SENDTO);
-                        intent.setData(Uri.parse("mailto:a.sahin.ual@gmail.com"));
-                        if (intent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(intent);
-                        }
-                        break;
-                    case R.id.nav_rate:
-                        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+                    } catch (ActivityNotFoundException e) {
+                        uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
                         intent = new Intent(Intent.ACTION_VIEW, uri);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY
-                                | Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-                                | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                        }
-                        break;
-                    default:
-                        return true;
+                        startActivity(intent);
+                    }
+                } else {
+                    return true; // For unhandled cases, just return true
                 }
                 return true;
             }
         });
+
 
         sw_searchForWord = findViewById(R.id.sw_searchForWord);
         int searchIconId = sw_searchForWord.getContext().getResources().getIdentifier("android:id/search_mag_icon", null, null);
